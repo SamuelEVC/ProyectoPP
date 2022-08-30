@@ -30,7 +30,7 @@ $('#formLogin').submit(function(e){
                    }).then((result) => {
                        if(result.value){
                            //window.location.href = "vistas/pag_inicio.php";
-                           window.location.href = "dashboard/index.php";
+                           window.location.href = "dashboard/index.php";//AQUI SE HACE LA REDIRECCION
                        }
                    })
                    
