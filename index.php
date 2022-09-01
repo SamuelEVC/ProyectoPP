@@ -5,7 +5,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login con  PHP - Bootstrap 4</title>
+        <title>SiAdPe Login</title>
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="estilos.css">
@@ -48,6 +48,6 @@
      <script src="popper/popper.min.js"></script>    
         
      <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>    
-     <script src="codigo.js"></script>    
+     <script src="script.js"></script>  
     </body>
 </html>
