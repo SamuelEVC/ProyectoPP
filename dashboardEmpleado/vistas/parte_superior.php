@@ -29,7 +29,8 @@ if($_SESSION["s_usuario"] === null){
 
     <!--datables CSS básico-->
     <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->  
+    <!--datables estilo bootstrap 4 CSS-->
+    
     <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">      
     
 </head>
@@ -125,7 +126,7 @@ if($_SESSION["s_usuario"] === null){
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
             
-            <h1 class="text-center">Su permiso es: <span class="badge badge-success"><?php echo $_SESSION["s_rol_descripcion"];?></span></h1> 
+            <h1 class="text-center m-2">Su permiso es: <span class="badge badge-success"><?php echo $_SESSION["s_rol_descripcion"];?></span></h1> 
             
             
 
@@ -141,7 +142,7 @@ if($_SESSION["s_usuario"] === null){
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="../bd/logout.php">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar Sesión
                 </a>

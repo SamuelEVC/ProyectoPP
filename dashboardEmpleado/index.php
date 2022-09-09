@@ -5,7 +5,7 @@
 <!-- Main Content -->
     <div id="content">
         
-        <h1>Paguina Principal</h1>
+        <h1>Pagina Principal</h1>
 
     </div>
 <!-- End of Main Content -->

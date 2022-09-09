@@ -1,6 +1,10 @@
 <?php require_once "vistas/parte_superior.php"?>
 
-<!--<link rel="stylesheet" href="styleEmpleados.css" />-->
+<head>
+  <!--<link rel="stylesheet" href="styleEmpleados.css" />-->
+</head>
+
+
 <!--INICIO del cont principal-->
 <div class="container-fluid">
   <div class="card shadow mb-4">
@@ -17,22 +21,35 @@
     </div>
     <!-- todo -->
     <div class="todo-container">
+
       <div class="status" id="no_status">
-        <h1>No Status</h1>
+
+        <h1>To Do</h1>
+
         <button id="add_btn" data-target-modal="#todo_form">+ Add Todo</button>
+
         <div class="todo" draggable="true">
-          Buy a Pizza
+          Hacer Tarea de Reparacion
           <span class="close">&times;</span>
         </div>
+        
+        <div class="todo" draggable="true">
+          Llevar moden nuevo
+          <span class="close">&times;</span>
+        </div>
+
       </div>
+
       <div class="status">
-        <h1>Not Started</h1>
+        <h1>Pendiente</h1>
       </div>
+
       <div class="status">
-        <h1>In Progress</h1>
+        <h1>En Proceso</h1>
       </div>
+
       <div class="status">
-        <h1>Completed</h1>
+        <h1>Finalizado</h1>
       </div>
     </div>
 

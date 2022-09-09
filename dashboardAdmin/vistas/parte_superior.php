@@ -135,7 +135,7 @@ if($_SESSION["s_usuario"] === null){
 
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
-            <h1 class="text-center">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"];?></span></h1> 
+            <h3 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"];?></span></h3> 
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -148,9 +148,7 @@ if($_SESSION["s_usuario"] === null){
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                
-
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="../bd/logout.php">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar Sesión
                 </a>
