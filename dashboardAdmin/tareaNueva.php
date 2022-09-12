@@ -2,7 +2,7 @@
 
 <!--INICIO del cont principal-->
 <div class="container-fluid">
-  <div class="jumbotron">
+  <div class="jumbotron jumbotron-fluid">
     <div class="row justify-content-md-center">
       <div class="col-lg-center">
         <div class="input-group mb-3">
@@ -22,7 +22,7 @@
 
 
     <div class="row justify-content-md-center">
-      <div class="col-lg-12">
+      <div class="col-lg-8">
         <div class="input-group mb-3">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -51,6 +51,8 @@
       </div>
     </div>
 
+    <hr class="my-4"> 
+    
     <div class="row ml-2">
       <div class="col-8">
       </div>

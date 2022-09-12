@@ -58,7 +58,7 @@ if($_SESSION["s_usuario"] === null){
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
         <i class="fa fa-home" aria-hidden="true"></i>
-          <span>Paguina principal</span></a>
+          <span>Pagina principal</span></a>
       </li>
 
 
