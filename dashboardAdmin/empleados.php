@@ -5,8 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="jumbotron">
-                        
+      <div class="jumbotron">        
         <h1 class="display-4 text-center">¡Bienvenido!</h1>
         <h2 class="text-center">Usuario: <span class="badge badge-primary"><?php echo $_SESSION["s_usuario"];?></span></h2>    
         <p class="lead text-center">Esta es la página de inicio, luego de un LOGIN correcto.</p>
@@ -17,7 +16,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!--FIN del cont principal-->

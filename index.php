@@ -16,12 +16,16 @@
     </head>
     
     <body>
-     
+    
       <div class="container-login">
-        <div class="wrap-login">
+        <div class="wrap-login text-center">
             <form class="login-form validate-form" id="formLogin" action="" method="post">
+
                 <span class="login-form-title">LOGIN</span>
-                
+                <h4 class="mb-2">SiAdPe</h4>
+
+                <p class="small mb-2 pb-lg-2"><a class="text-black-50">Sistema de Administración de Personal</a></p>
+
                 <div class="wrap-input100" data-validate = "Usuario incorrecto">
                     <input class="input100" type="text" id="usuario" name="usuario" placeholder="Usuario">
                     <span class="focus-efecto"></span>

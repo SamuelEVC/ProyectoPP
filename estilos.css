@@ -56,8 +56,8 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);
-  background: linear-gradient(to right, #00dbde, #fc00ff);
+  /*background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);*/
+  background: linear-gradient(228deg, #1955fd, #b047db);
 }
 
 .wrap-login {
@@ -66,7 +66,7 @@ button:hover {
   border-radius: 20px;
   overflow: hidden;
   padding: 77px 55px 53px 55px;
-  -webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38);
+  --webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38);
  /* box-shadow: eje-x | eje-y | blur-radius | color */
 }
 
@@ -210,7 +210,7 @@ button:hover {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(right, #efd9d9, #2635e9, #bdafe796, #a83bd8);
   background: -o-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
