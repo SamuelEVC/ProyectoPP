@@ -6,7 +6,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="row justify-content-md-center">
             <div class="col-lg-center">
-            <h1>Pagina Principal</h1>
+            <h1>Pagina Principal Ayuda para Juan</h1>
 
             <canvas id="gc" width="500" height="500"></canvas>
             <script>
