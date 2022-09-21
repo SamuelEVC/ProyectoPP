@@ -1,7 +1,7 @@
 <?php require_once "vistas/parte_superior.php"?>
 
 <head>
-  <!--<link rel="stylesheet" href="styleEmpleados.css" />-->
+  <link rel="stylesheet" href="styleEmpleados.css" />
 </head>
 
 
