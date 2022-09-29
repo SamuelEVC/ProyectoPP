@@ -1,5 +1,5 @@
 <?php
-include_once '../bd/conexion.php';
+include_once '../bd/conexion_CRUD.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   

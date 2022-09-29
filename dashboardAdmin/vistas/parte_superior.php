@@ -9,6 +9,15 @@ if($_SESSION["s_usuario"] === null){
 }
 }
 
+/*
+  include_once '/bd/conexion.php';
+  $objeto = new Conexion();
+  $conexion = $objeto->Conectar();
+  $consultaN= "SELECT  id FROM  Usuarios  WHERE usuario = $_SESSION["s_usuario"]";
+  $resultadoN = $conexion->prepare($consultaTipo);
+  $resultadoN->execute();
+  $dataN=$resultadoN->fetchAll(PDO::FETCH_ASSOC);
+ */
 ?>
 
 <!DOCTYPE html>
@@ -64,12 +73,7 @@ if($_SESSION["s_usuario"] === null){
           <span>Pagina principal</span></a>
       </li>
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="tareaNueva.php">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-        <span>Nueva Tarea</span></a>
-      </li>
+     
       <!-- Nav Item - Informes -->
       <li class="nav-item">
         <a class="nav-link" href="empleados.php">
@@ -143,7 +147,7 @@ if($_SESSION["s_usuario"] === null){
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_usuario"];?></span>
-<!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
+                <!--  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/Neco-Arc-Glasses.jpg">
               </a>
               <!-- Dropdown - User Information -->

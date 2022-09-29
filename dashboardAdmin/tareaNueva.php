@@ -1,5 +1,17 @@
 <?php require_once "vistas/parte_superior.php"?>
 
+<?php
+include_once '/bd/conexion.php';
+$objeto = new Conexion();
+$conexion = $objeto->Conectar();
+
+
+$consulta = "SELECT descripcion FROM `tipologias`";
+$resultado = $conexion->prepare($consulta);
+$resultado->execute();
+$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!--INICIO del cont principal-->
 <div class="container-fluid">
   <div class="jumbotron jumbotron-fluid">
@@ -11,15 +23,19 @@
                 Seleccione una Tipologia
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <?php                            
+                       foreach($data as $dat) {                                                        
+                        ?>
+                        <a class="dropdown-item" ><?php echo $dat['descripcion'] ?></a>
+                      <?php
+                      }
+                      ?>   
                 </div>
               </div>
           </div>
       </div>
     </div>
-
+    
 
     <div class="row justify-content-md-center">
       <div class="col-lg-8">
