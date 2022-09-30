@@ -34,7 +34,11 @@ switch($opcion){
     case 3://baja
         $consulta = "DELETE FROM personas WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
-        $resultado->execute();                           
+        $resultado->execute();      
+        
+        $consulta = "ALTER TABLE `personas` AUTO_INCREMENT=1";	
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
         break;        
 }
 

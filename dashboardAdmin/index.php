@@ -10,8 +10,7 @@ $conexion = $objeto->Conectar();
 
 //$consultaTareDia = "SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id";
 //$consultaTareDia = "SELECT Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_id, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id";
-$consultaTareDia = "SELECT  Tareas.id AS tarea_ID, Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_ID, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id";
-
+$consultaTareDia = "SELECT  Tareas.id AS tarea_ID, Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_ID, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id GROUP BY tarea_ID";
 $resultadoTareDia = $conexion->prepare($consultaTareDia);
 $resultadoTareDia->execute();
 $dataTareDia=$resultadoTareDia->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +78,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?php echo $dat1['descripcion'] ?></td>
                                                         <td><?php echo $dat1['fecha_Ini'] ?></td>                                                           
                                                         <td style="display:none"><?php echo $dat1['estado_ID'] ?></td>                                                            
-                                                        <td><?php echo $dat1['estado'] ?></td>                                                            
+                                                        <td id="estadoT"><?php echo $dat1['estado'] ?></td>                                                            
                                                         <td></td>
                                                     </tr>
                                                     <?php
@@ -116,7 +115,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                         <?php                            
                                             foreach($dataTipo as $value=>$datT) { 
                                             ?>
-                                            <option value="<?php echo $value +1 ?>"> <?php echo $datT['descripcion'] ?></option>
+                                            <option value="<?php echo $datT['id'] ?>"> <?php echo $datT['descripcion'] ?></option>
                                             <?php
                                             }
                                             ?>   
@@ -134,7 +133,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                             <label for="" class="col-form-label">Descripcion de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="descTarea"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;"></textarea>
                                         </div>
                                         
                                     </div>
@@ -150,7 +149,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                         <?php                            
                                             foreach($dataCuad as $value=>$dat) {                                                        
                                             ?>
-                                            <option value="<?php echo $value +1?>"> <?php echo $dat['nombre'] ?></option>                                            
+                                            <option value="<?php echo $dat['id']?>"> <?php echo $dat['nombre'] ?></option>                                            
                                             <?php
                                             }
                                             ?>   
@@ -160,9 +159,8 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="btnGuardar" class="btn btn-dark">Enviar</button>
-    
+                                <button type="button" class="btn btn-light" data-dismiss="modal" id="cancelar">Cancelar</button>
+                                <button type="submit" id="btnGuardar" class="btn btn-dark">Enviar</button>
                             </div>                    
                     </form>    
             </div>

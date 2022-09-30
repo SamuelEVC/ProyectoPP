@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2022 a las 15:58:15
+-- Tiempo de generación: 30-09-2022 a las 18:16:31
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -27,10 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `areas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `areas`
@@ -47,20 +47,20 @@ INSERT INTO `areas` (`id`, `nombre`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `cuadrillas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `id_area` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_area` (`id_area`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `cuadrillas`
 --
 
 INSERT INTO `cuadrillas` (`id`, `nombre`, `id_area`) VALUES
-(1, 'Ab_Juan-Samuel', 1),
-(2, 'AB_nata-Pablo', 1);
+(1, 'AB_Juan-Samuel', 1),
+(2, 'AB_Nata-', 1);
 
 -- --------------------------------------------------------
 
@@ -69,21 +69,22 @@ INSERT INTO `cuadrillas` (`id`, `nombre`, `id_area`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `empleados` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_cuadrilla` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cuadrilla` (`id_cuadrilla`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
 INSERT INTO `empleados` (`id`, `id_cuadrilla`, `id_usuario`) VALUES
-(1, 1, 1),
-(2, 2, 2);
+(1, 1, 3),
+(2, 2, 2),
+(3, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -92,10 +93,10 @@ INSERT INTO `empleados` (`id`, `id_cuadrilla`, `id_usuario`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `estados` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `estado` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `estados`
@@ -113,20 +114,21 @@ INSERT INTO `estados` (`id`, `estado`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `jefes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_area` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_area` (`id_area`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `jefes`
 --
 
 INSERT INTO `jefes` (`id`, `id_area`, `id_usuario`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -135,10 +137,10 @@ INSERT INTO `jefes` (`id`, `id_area`, `id_usuario`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -155,7 +157,7 @@ INSERT INTO `roles` (`id`, `descripcion`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tareas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `resolucion` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_inicio` date NOT NULL,
@@ -166,17 +168,19 @@ CREATE TABLE IF NOT EXISTS `tareas` (
   PRIMARY KEY (`id`),
   KEY `id_jefe` (`id_jefe`),
   KEY `id_estado` (`id_estado`),
-  KEY `id_tipologia` (`id_tipologia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  KEY `id_tipologia` (`id_tipologia`),
+  FULLTEXT KEY `resolucion` (`resolucion`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `tareas`
 --
 
 INSERT INTO `tareas` (`id`, `descripcion`, `resolucion`, `fecha_inicio`, `fecha_finalizacion`, `id_jefe`, `id_estado`, `id_tipologia`) VALUES
-(1, 'comprar una coca', '', '2022-09-26', '0000-00-00', 1, 1, 1),
-(2, 'Comprar milanesas en la esquina', '', '2022-09-27', '2022-09-28', 1, 1, 2),
-(3, 'Comprar jugos', '', '2022-09-28', '2022-09-29', 1, 1, 3);
+(1, 'Tarea de Reparacion Ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 1),
+(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 4),
+(4, 'Tarea de distribución ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 3),
+(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', '0000-00-00', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +189,7 @@ INSERT INTO `tareas` (`id`, `descripcion`, `resolucion`, `fecha_inicio`, `fecha_
 --
 
 CREATE TABLE IF NOT EXISTS `tareas_empleados` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_empleado` int(11) NOT NULL,
   `id_cuadrilla` int(11) NOT NULL,
   `id_tarea` int(11) NOT NULL,
@@ -193,16 +197,18 @@ CREATE TABLE IF NOT EXISTS `tareas_empleados` (
   KEY `id_empleado` (`id_empleado`),
   KEY `id_cuadrilla` (`id_cuadrilla`),
   KEY `id_tarea` (`id_tarea`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `tareas_empleados`
 --
 
 INSERT INTO `tareas_empleados` (`id`, `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES
-(1, 1, 1, 1),
-(2, 2, 2, 2),
-(3, 2, 2, 3);
+(1, 2, 2, 3),
+(2, 2, 2, 1),
+(3, 1, 1, 4),
+(4, 3, 1, 4),
+(5, 2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -211,10 +217,10 @@ INSERT INTO `tareas_empleados` (`id`, `id_empleado`, `id_cuadrilla`, `id_tarea`)
 --
 
 CREATE TABLE IF NOT EXISTS `tipologias` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `tipologias`
@@ -223,7 +229,8 @@ CREATE TABLE IF NOT EXISTS `tipologias` (
 INSERT INTO `tipologias` (`id`, `descripcion`) VALUES
 (1, 'Reparacion'),
 (2, 'Delivery'),
-(3, 'Distribución');
+(3, 'Distribución'),
+(4, 'Ensamblaje');
 
 -- --------------------------------------------------------
 
@@ -232,7 +239,7 @@ INSERT INTO `tipologias` (`id`, `descripcion`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `idRol` int(11) NOT NULL,
@@ -240,16 +247,18 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `habilitado` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idRol` (`idRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `password`, `idRol`, `nombre`, `habilitado`) VALUES
-(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Samuel', 1),
+(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Pablo', 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Natanel', 1),
-(3, 'demo2', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Juan', 1);
+(3, 'demo2', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Juan', 1),
+(4, 'demo3', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Samuel', 1),
+(5, 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Gustavo', 1);
 
 --
 -- Restricciones para tablas volcadas
