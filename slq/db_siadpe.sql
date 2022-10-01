@@ -103,9 +103,9 @@ CREATE TABLE IF NOT EXISTS `estados` (
 --
 
 INSERT INTO `estados` (`id`, `estado`) VALUES
-(1, 'pendiente'),
-(2, 'proceso'),
-(3, 'finalizada');
+(1, 'Pendiente'),
+(2, 'Proceso'),
+(3, 'Finalizada');
 
 -- --------------------------------------------------------
 
