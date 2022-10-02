@@ -61,18 +61,6 @@ if($_SESSION["s_usuario"] === null){
           <span>Pagina principal</span></a>
       </li>
 
-
-
-
-      <!-- Nav Item - Empleados -->
-      <li class="nav-item">
-        <a class="nav-link" href="empleados.php">
-        <i class="fa fa-users" aria-hidden="true"></i>
-        <span>Empleados</span></a>
-      </li>
-      <!-- Nav Item - Informes -->
-
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
