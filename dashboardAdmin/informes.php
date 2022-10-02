@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center">
     <h1>Página de Informes</h1>
  <?php
-include_once '/bd/conexion.php';
+include_once '/bd/conexion_CRUD.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 

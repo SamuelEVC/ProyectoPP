@@ -1,5 +1,5 @@
 <?php
-include_once '../bd/conexion.php';
+include_once '../bd/conexion_CRUD.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
@@ -34,7 +34,11 @@ switch($opcion){
     case 3://baja
         $consulta = "DELETE FROM personas WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
-        $resultado->execute();                           
+        $resultado->execute();      
+        
+        $consulta = "ALTER TABLE `personas` AUTO_INCREMENT=1";	
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
         break;        
 }
 
