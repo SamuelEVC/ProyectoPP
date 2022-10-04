@@ -9,15 +9,6 @@ if($_SESSION["s_usuario"] === null){
 }
 }
 
-/*
-  include_once '/bd/conexion.php';
-  $objeto = new Conexion();
-  $conexion = $objeto->Conectar();
-  $consultaN= "SELECT  id FROM  Usuarios  WHERE usuario = $_SESSION["s_usuario"]";
-  $resultadoN = $conexion->prepare($consultaTipo);
-  $resultadoN->execute();
-  $dataN=$resultadoN->fetchAll(PDO::FETCH_ASSOC);
- */
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +30,11 @@ if($_SESSION["s_usuario"] === null){
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+  <!--datables personalizado-->  
+  <link rel="stylesheet"  type="text/css" href="main.css">  
 
-    <!--datables CSS básico-->
+  <!--datables CSS básico-->
     <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
     <!--datables estilo bootstrap 4 CSS-->  
     <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">    
@@ -69,7 +63,7 @@ if($_SESSION["s_usuario"] === null){
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index.php">
         <i class="fa fa-home" aria-hidden="true"></i>
           <span>Pagina principal</span></a>
@@ -77,7 +71,7 @@ if($_SESSION["s_usuario"] === null){
 
      
       <!-- Nav Item - Informes -->
-      <li class="nav-item">
+      <li class="nav-item" id="navItemxD">
         <a class="nav-link" href="empleados.php">
         <i class="fa fa-users" aria-hidden="true"></i>
         <span>Empleados</span></a>
@@ -141,7 +135,7 @@ if($_SESSION["s_usuario"] === null){
 
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
-            <h3 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"];?></span></h3> 
+            <h3 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h3> 
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

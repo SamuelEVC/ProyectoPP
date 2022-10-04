@@ -4,21 +4,23 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
+session_start();
+$idUsuario = $_SESSION["s_idUsuario"];
+
 $tipologia = (isset($_POST['tipologia'])) ? $_POST['tipologia'] : '';
 $descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
 $cuadrilla = (isset($_POST['cuadrilla'])) ? $_POST['cuadrilla'] : '';
 $opci = (isset($_POST['opci'])) ? $_POST['opci'] : '';
 $tareaID = (isset($_POST['tareaID'])) ? $_POST['tareaID'] : '';
-$nombreUsuario = (isset($_POST['nombreUsuario'])) ? $_POST['nombreUsuario'] : '';
+
 
 $date = date('y-m-d'); 
 //$id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
 switch($opci){
     case 1: //alta
-        //incert a tabla tarea
-        //SOLO FUNCIONA CON JEFES CON DISTINTOS NOMBRE :'( No decirle al profe, nos va a pegar
-        $consulta ="SELECT Jefes.id  FROM  Jefes INNER JOIN Usuarios ON Jefes.id_usuario = Usuarios.id  WHERE Usuarios.nombre = '$nombreUsuario'";
+        //Saca al Jefe
+        $consulta ="SELECT Jefes.id  FROM  Jefes INNER JOIN Usuarios ON Jefes.id_usuario = Usuarios.id  WHERE Usuarios.id = '$idUsuario'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $nombreUsers = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -27,20 +29,21 @@ switch($opci){
             $UserID = $dat12['id'];
         }
 
-        $consulta = "INSERT INTO `db_siadpe`.`tareas` ( `descripcion`, `resolucion`, `fecha_inicio`, `fecha_finalizacion`, `id_jefe`, `id_estado`, `id_tipologia`) VALUES ( '$descripcion', '', '$date', '0000-00-00', '$UserID', 1, '$tipologia')";		
+        //Incert en tabla tareas
+        $consulta = "INSERT INTO `db_siadpe`.`tareas` ( `descripcion`, `resolucion`, `fecha_inicio`,  `id_jefe`, `id_estado`, `id_tipologia`) VALUES ( '$descripcion', '', '$date', '$UserID', 1, '$tipologia')";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         
-        
+        //Saco id de la ultima tarea
         $consulta ="SELECT MAX(id) as maxid FROM `tareas`";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $idtareas = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
+        foreach($idtareas as $dat123) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
+            $idtarea = $dat123['maxid'];
+        }
 
-        //print_r($idtarea);
-        //ALTER TABLE `tareas` AUTO_INCREMENT=1
-        //$nombresCuadr ="SELECT Usuarios.nombre AS Usuario FROM Cuadrillas INNER JOIN Empleados ON Cuadrillas.id = Empleados.id_cuadrilla INNER JOINUsuarios ON Empleados.id_usuario = Usuarios.id WHERE Cuadrillas.id = $cuadrilla";
 
 
         //Busco los empleados la cuadrilla que paso por el metodo POST
@@ -50,9 +53,6 @@ switch($opci){
         $nombresCuadrdia = $resultado->fetchAll(PDO::FETCH_ASSOC);
         
         
-        foreach($idtareas as $dat123) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
-            $idtarea = $dat123['maxid'];
-        }
 
         //incert a tabla tarea_empleado
         foreach($nombresCuadrdia as $dat) {
@@ -111,6 +111,7 @@ switch($opci){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         */
+
         $consulta ="SELECT MAX(id) as maxid FROM `tareas`";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
@@ -118,7 +119,8 @@ switch($opci){
         
         break;       
     case 3://baja
-        
+
+        //borro de la tabla tareas epleados
         $consulta = "DELETE FROM `db_siadpe`.`tareas_empleados` WHERE `tareas_empleados`.`id_tarea` = $tareaID";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();   
@@ -131,7 +133,6 @@ switch($opci){
         $consulta = "DELETE FROM `db_siadpe`.`tareas` WHERE `tareas`.`id` = $tareaID";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();  
-
 
         //seteo el numero de finalas en el correspondiente
         $consulta = "ALTER TABLE `tareas` AUTO_INCREMENT=1";	

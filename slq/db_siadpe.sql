@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2022 a las 18:16:31
+-- Tiempo de generación: 04-10-2022 a las 18:23:40
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `tareas` (
   `descripcion` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `resolucion` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_inicio` date NOT NULL,
-  `fecha_finalizacion` date NOT NULL,
+  `fecha_finalizacion` date DEFAULT NULL,
   `id_jefe` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `id_tipologia` int(11) NOT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `tareas` (
   KEY `id_estado` (`id_estado`),
   KEY `id_tipologia` (`id_tipologia`),
   FULLTEXT KEY `resolucion` (`resolucion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `tareas`
@@ -178,9 +178,12 @@ CREATE TABLE IF NOT EXISTS `tareas` (
 
 INSERT INTO `tareas` (`id`, `descripcion`, `resolucion`, `fecha_inicio`, `fecha_finalizacion`, `id_jefe`, `id_estado`, `id_tipologia`) VALUES
 (1, 'Tarea de Reparacion Ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 1),
-(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 4),
-(4, 'Tarea de distribución ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 3),
-(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', '0000-00-00', 1, 1, 2);
+(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', '0000-00-00', 1, 2, 4),
+(4, 'Tarea de distribución ejemplo', '', '2022-09-30', '0000-00-00', 1, 3, 3),
+(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', '0000-00-00', 1, 2, 2),
+(6, 'texto corto', '', '2022-09-30', '0000-00-00', 1, 1, 2),
+(7, 'Pedir unas Pizzas y Gaseosa, en la casa de Juan', '', '2022-09-30', '0000-00-00', 1, 1, 2),
+(8, 'prueba de tarea, homero sipson', '', '2022-10-04', '0000-00-00', 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -197,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `tareas_empleados` (
   KEY `id_empleado` (`id_empleado`),
   KEY `id_cuadrilla` (`id_cuadrilla`),
   KEY `id_tarea` (`id_tarea`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `tareas_empleados`
@@ -206,9 +209,12 @@ CREATE TABLE IF NOT EXISTS `tareas_empleados` (
 INSERT INTO `tareas_empleados` (`id`, `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES
 (1, 2, 2, 3),
 (2, 2, 2, 1),
-(3, 1, 1, 4),
-(4, 3, 1, 4),
-(5, 2, 2, 5);
+(5, 2, 2, 5),
+(6, 2, 2, 6),
+(7, 2, 2, 7),
+(8, 2, 2, 8),
+(10, 1, 1, 4),
+(11, 3, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -220,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `tipologias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `tipologias`
@@ -230,7 +236,8 @@ INSERT INTO `tipologias` (`id`, `descripcion`) VALUES
 (1, 'Reparacion'),
 (2, 'Delivery'),
 (3, 'Distribución'),
-(4, 'Ensamblaje');
+(4, 'Ensamblaje'),
+(5, 'Transporte');
 
 -- --------------------------------------------------------
 
@@ -255,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `usuario`, `password`, `idRol`, `nombre`, `habilitado`) VALUES
 (1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Pablo', 1),
-(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Natanel', 1),
+(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Natanael', 1),
 (3, 'demo2', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Juan', 1),
 (4, 'demo3', 'fe01ce2a7fbac8fafaed7c982a04e229', 2, 'Samuel', 1),
 (5, 'admin2', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Gustavo', 1);

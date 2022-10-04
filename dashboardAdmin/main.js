@@ -136,7 +136,7 @@ tablaTareasDiarias = $("#tablaTareasDiarias").DataTable({
     "columnDefs":[{
      "targets": -1,
      "data":null,
-     "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditarTarea'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnBorrarTarea'><i class='fa fa-trash' aria-hidden='true'></i></button> </div>"  
+     "defaultContent": "<div class='text-center'><div class='btn-group' id='btnAbsolutes'><button class='btn btn-primary btnEditarTarea'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnBorrarTarea'><i class='fa fa-trash' aria-hidden='true'></i></button> </div>"  
     }],
      
  "language": {
@@ -153,9 +153,51 @@ tablaTareasDiarias = $("#tablaTareasDiarias").DataTable({
              "sPrevious": "Anterior"
           },
           "sProcessing":"Procesando...",
-     }
+     },
+     //para usar los botones   
+     responsive: "true",
+     dom: 'Bfrtilp',       
+     buttons:[ 
+        {
+            text:      '<i class="fa fa-plus-square" aria-hidden="true"></i> Tarea Nueva',
+            titleAttr: 'Tarea Nueva',
+            className: 'btn btn-success',
+            id: "btnNuevaTarea"
+
+            
+        },
+         {
+             extend:    'excelHtml5',
+             text:      '<i class="fas fa-file-excel"></i> ',
+             titleAttr: 'Exportar a Excel',
+             id: 'copyButton',
+             className: 'btn btn-success'
+             
+         },
+         {
+             extend:    'pdfHtml5',
+             text:      '<i class="fas fa-file-pdf"></i> ',
+             titleAttr: 'Exportar a PDF',
+             id: 'copyButton',
+             className: 'btn btn-danger'
+         },
+         {
+             extend:    'print',
+             text:      '<i class="fa fa-print"></i> ',
+             titleAttr: 'Imprimir',
+             id: 'copyButton',
+             className: 'btn btn-info'
+         },
+     ]	        
+    
  });
 
+    // BUSCAR ESTO!!! cambiar estado a clase activa de los "li"
+    $("li").click(function() {
+        $("li").removeClass("active");
+        $(this).addClass("active");
+      });
+      
 
 $("#btnNuevaTarea").click(function(){
     $("#formTareas").trigger("reset");
@@ -175,22 +217,11 @@ $(document).on("click", ".btnEditarTarea", function(){
     tipologia = fila.find('td:eq(1)').text();
     cuadrilla = fila.find('td:eq(3)').text();
     descripcion = fila.find('td:eq(5)').text();
-    //estado = fila.find('td:eq(7)').text();
-    /*
-    switch (estado) {
-        case '1':
-            $("#estadoT").css("color", "red");
-        break;
-        case '2':
-            $("#estadoT").css("color", "yellow");
-        break;
 
-    }*/
-    
+    //console.log( fila);
 
-    console.log( fila);
-
-    $("#tipoloDrop").val(tipologia);//setea el valor
+    //setea el valor
+    $("#tipoloDrop").val(tipologia);
     $("#descTarea").val(descripcion);
     $("#cuadrillaDrop").val(cuadrilla);
     
@@ -200,20 +231,13 @@ $(document).on("click", ".btnEditarTarea", function(){
     
     $(".modal-header").css("background-color", "#4e73df");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Editar Tarea");    
-    //$(".modal-footer").html("<button type='button' class='btn btn-light' data-dismiss='modal' id='cancelar'>Cancelar</button> <button type='button' class='btn btn-danger btnBorrarTarea'>Borrar</button>  <button type='submit' id='btnGuardar' class='btn btn-dark'>Enviar</button>");      
+    $(".modal-title").text("Editar Tarea");      
     $("#modalCRUD").modal("show");  
     
 });
 
 
-//metodo para quitar el boton de Borrar NO SE USA
-$("#formTareas").on("click", "#cancelar", function(){
-    $("#modalCRUD").modal("hide"); 
-    if(opci == 2){
-        $(".modal-footer").html("<button type='button' class='btn btn-light' data-dismiss='modal' id='cancelar'>Cancelar</button>  <button type='submit' id='btnGuardar' class='btn btn-dark'>Enviar</button>");  
-    }
-});
+
 
 var tareaID;
 
@@ -236,7 +260,7 @@ $(document).on("click", ".btnBorrarTarea", function(){
 
             success: function(){
                 //tablaPersonas.row(fila.parents('tr')).remove().draw();
-                console.log("ENTRO");
+                //console.log("ENTRO");
                 window.location.reload()
             },
             error: function (jqXHR, exception) {
@@ -270,20 +294,20 @@ $("#formTareas").submit(function(e){
     tipologia = $.trim($("#tipoloDrop").val());   
     descripcion = $.trim($("#descTarea").val());   
     cuadrilla = $.trim($("#cuadrillaDrop").val());   
-    nombreUsuario = $.trim($("#nombreUsuario").text()); 
+    //nombreUsuario = $.trim($("#nombreUsuario").text()); 
 
-    console.log("tipologia: " +tipologia + " | descripcion: " + descripcion + " | cuadrilla: " + cuadrilla + " | opcion: " + opci + " | tareaID: " + tareaID + " | nombreUsuario: " + nombreUsuario);
+    console.log("tipologia: " +tipologia + " | descripcion: " + descripcion + " | cuadrilla: " + cuadrilla + " | opcion: " + opci + " | tareaID: " + tareaID );
 
     
     $.ajax({
         url: "bd/crudTareaDiaria.php",
         type: "POST",
         dataType: "json",
-        data: {tipologia:tipologia, descripcion:descripcion, cuadrilla:cuadrilla, opci:opci, tareaID:tareaID, nombreUsuario:nombreUsuario },
+        data: {tipologia:tipologia, descripcion:descripcion, cuadrilla:cuadrilla, opci:opci, tareaID:tareaID},
         
         success: function(data){  
             console.log(data);
-            window.location.reload()
+            window.location.reload();
             /*
             Tarea_ID = data[0].tarea_ID; 
             Tipologia_ID = data[0].tipologia_ID; 

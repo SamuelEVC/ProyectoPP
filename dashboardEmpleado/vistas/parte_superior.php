@@ -32,6 +32,14 @@ if($_SESSION["s_usuario"] === null){
     <!--datables estilo bootstrap 4 CSS-->
     
     <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">      
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App css -->
+    <link href="css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="css/app.min.css" rel="stylesheet" type="text/css" id="app-style">
+
+
     
 </head>
 
@@ -60,18 +68,6 @@ if($_SESSION["s_usuario"] === null){
         <i class="fa fa-home" aria-hidden="true"></i>
           <span>Pagina principal</span></a>
       </li>
-
-
-
-
-      <!-- Nav Item - Empleados -->
-      <li class="nav-item">
-        <a class="nav-link" href="empleados.php">
-        <i class="fa fa-users" aria-hidden="true"></i>
-        <span>Empleados</span></a>
-      </li>
-      <!-- Nav Item - Informes -->
-
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -135,7 +131,7 @@ if($_SESSION["s_usuario"] === null){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_usuario"];?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_nombre"];?></span>
                 <!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/Neco-Arc.jpg">
               </a>

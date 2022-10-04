@@ -56,9 +56,18 @@
 
   
     <!-- datatables JS -->
-    <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>    
+    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+
+    <!-- para usar botones en datatables JS -->  
+    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+
     <!-- código propio JS --> 
     <script type="text/javascript" src="main.js"></script>  
+    <script type="text/javascript" src="mainEmpleados.js"></script>  
     
 
     

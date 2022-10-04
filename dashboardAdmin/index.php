@@ -16,17 +16,20 @@ $resultadoTareDia->execute();
 $dataTareDia=$resultadoTareDia->fetchAll(PDO::FETCH_ASSOC);
 
 
-$consultaTipo = "SELECT id, descripcion FROM `tipologias`";
+$consultaTipo = "SELECT id, descripcion FROM `tipologias` ORDER BY descripcion ASC";//el truco para que salga en orden alfabetico
 $resultadoTipo = $conexion->prepare($consultaTipo);
 $resultadoTipo->execute();
 $dataTipo=$resultadoTipo->fetchAll(PDO::FETCH_ASSOC);
+ 
 
-
-$consultaCuad = "SELECT id, nombre FROM `cuadrillas`";
+$consultaCuad = "SELECT id, nombre FROM `cuadrillas` ORDER BY nombre ASC";
 $resultadoCuad = $conexion->prepare($consultaCuad);
 $resultadoCuad->execute();
 $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
+
 <!-- Main Content -->
     <div id="content">
         <!-- Begin Page Content -->
@@ -112,13 +115,14 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="input-group mb-3">
                                         <select class="custom-select custom-select-sm" id="tipoloDrop">
                                         <option selected >Seleccione una tipologia</option>
-                                        <?php                            
-                                            foreach($dataTipo as $value=>$datT) { 
+                                            <?php                            
+                                                foreach($dataTipo as $datT) { 
                                             ?>
                                             <option value="<?php echo $datT['id'] ?>"> <?php echo $datT['descripcion'] ?></option>
                                             <?php
-                                            }
+                                                }
                                             ?>   
+
                                         </select>   
                                     </div>
                                 </div>
@@ -147,7 +151,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                         <select class="custom-select custom-select-sm" id="cuadrillaDrop">
                                         <option selected>Seleccione una cuadrilla</option>
                                         <?php                            
-                                            foreach($dataCuad as $value=>$dat) {                                                        
+                                            foreach($dataCuad as $dat) {                                                           
                                             ?>
                                             <option value="<?php echo $dat['id']?>"> <?php echo $dat['nombre'] ?></option>                                            
                                             <?php
