@@ -31,22 +31,20 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- Main Content -->
-    <div id="content">
+<div id="content">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
         <div class="container">
         <div class="row">
-            <div class="col-lg-12">            
-            <button id="btnNuevaTarea" type="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus-square" aria-hidden="true"></i> Nueva Tarea</button>    
-            </div>    
+    
         </div>    
     </div>    
     <br>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary"><center>Tareas Diarias</center></h6>
+                    <h3 class="m-0 font-weight-bold text-primary"><center>Tareas Diarias</center></h3>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -137,7 +135,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                             <label for="" class="col-form-label">Descripcion de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;" maxlength="300"></textarea>
                                         </div>
                                         
                                     </div>

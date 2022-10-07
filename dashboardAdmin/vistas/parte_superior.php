@@ -35,12 +35,18 @@ if($_SESSION["s_usuario"] === null){
   <link rel="stylesheet"  type="text/css" href="main.css">  
 
   <!--datables CSS básico-->
-    <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->  
-    <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">    
+  <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
+
+  <!--datables estilo bootstrap 4 CSS-->  
+  <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">    
     
-     <!--Iconos de otros lados-->  
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Iconos de otros lados-->  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--datables CSS DATES-->
+  <!-- <link rel="stylesheet"  type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>  -->
+  <link rel="stylesheet"  type="text/css"  href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css"/>
+
 </head>
 
 <body id="page-top">
@@ -63,7 +69,7 @@ if($_SESSION["s_usuario"] === null){
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.php">
         <i class="fa fa-home" aria-hidden="true"></i>
           <span>Pagina principal</span></a>
@@ -82,7 +88,7 @@ if($_SESSION["s_usuario"] === null){
         <i class="fas fa-fw fa-table"></i>
         <span>Informes</span></a>
       </li>
-
+      
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

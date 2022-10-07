@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2022 a las 18:23:40
+-- Tiempo de generación: 07-10-2022 a las 04:51:07
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -170,20 +170,21 @@ CREATE TABLE IF NOT EXISTS `tareas` (
   KEY `id_estado` (`id_estado`),
   KEY `id_tipologia` (`id_tipologia`),
   FULLTEXT KEY `resolucion` (`resolucion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `tareas`
 --
 
 INSERT INTO `tareas` (`id`, `descripcion`, `resolucion`, `fecha_inicio`, `fecha_finalizacion`, `id_jefe`, `id_estado`, `id_tipologia`) VALUES
-(1, 'Tarea de Reparacion Ejemplo', '', '2022-09-30', '0000-00-00', 1, 1, 1),
-(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', '0000-00-00', 1, 2, 4),
-(4, 'Tarea de distribución ejemplo', '', '2022-09-30', '0000-00-00', 1, 3, 3),
-(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', '0000-00-00', 1, 2, 2),
-(6, 'texto corto', '', '2022-09-30', '0000-00-00', 1, 1, 2),
-(7, 'Pedir unas Pizzas y Gaseosa, en la casa de Juan', '', '2022-09-30', '0000-00-00', 1, 1, 2),
-(8, 'prueba de tarea, homero sipson', '', '2022-10-04', '0000-00-00', 1, 1, 5);
+(1, 'Tarea de Reparacion Ejemplo', '', '2022-09-30', NULL, 1, 1, 1),
+(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', NULL, 1, 2, 4),
+(4, 'Tarea de distribución ejemplo', 'La Tarea se finalizo con Exito!', '2022-09-30', '2022-10-05', 1, 3, 3),
+(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', NULL, 1, 2, 2),
+(6, 'texto corto', '', '2022-09-30', NULL, 1, 1, 2),
+(7, 'Pedir unas Pizzas y Gaseosa, en la casa de Juan', '', '2022-09-30', NULL, 1, 1, 2),
+(8, 'prueba de tarea, homero sipson', '', '2022-10-04', NULL, 1, 1, 5),
+(9, 'tarea ejemplo usuario 2', '', '2022-10-06', NULL, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `tareas_empleados` (
   KEY `id_empleado` (`id_empleado`),
   KEY `id_cuadrilla` (`id_cuadrilla`),
   KEY `id_tarea` (`id_tarea`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `tareas_empleados`
@@ -214,7 +215,8 @@ INSERT INTO `tareas_empleados` (`id`, `id_empleado`, `id_cuadrilla`, `id_tarea`)
 (7, 2, 2, 7),
 (8, 2, 2, 8),
 (10, 1, 1, 4),
-(11, 3, 1, 4);
+(11, 3, 1, 4),
+(12, 2, 2, 9);
 
 -- --------------------------------------------------------
 

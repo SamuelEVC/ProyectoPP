@@ -22,18 +22,7 @@ $('#formLogin').submit(function(e){
                        title:'Usuario y/o password incorrecta',
                    });
                }else{
-                   Swal.fire({
-                       type:'success',
-                       title:'¡Conexión exitosa!',
-                       confirmButtonColor:'#3085d6',
-                       confirmButtonText:'Ingresar'
-                   }).then((result) => {
-                       if(result.value){
-                           //window.location.href = "vistas/pag_inicio.php";
-                           window.location.href = "dashboardAdmin/index.php";//AQUI SE HACE LA REDIRECCION
-                       }
-                   })
-                   
+                    window.location.href = "dashboardAdmin/index.php";//AQUI SE HACE LA REDIRECCION  
                }
            }    
         });
