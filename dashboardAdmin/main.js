@@ -12,19 +12,19 @@ tablaTareasDiarias = $("#tablaTareasDiarias").DataTable({
         switch(num){
             case '1':
                 $('td', row).eq(8).css({
-                    'background-color':'#F13D24',//rojo
+                    'background-color':'#e84c3d',//rojo
                     'color':'white'
                 });
             break;
             case '2':
                 $('td', row).eq(8).css({
-                    'background-color':'#FF932E',//naranja
+                    'background-color':'#ffcd02',//naranja
                     'color':'white'
                 });
             break;
             case '3':
                 $('td', row).eq(8).css({
-                    'background-color':'#4df50e',//verde
+                    'background-color':'#2dcc70',//verde  #4df50e  <--viejo
                     'color':'white'
                 });
             break;

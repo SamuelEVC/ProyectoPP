@@ -110,7 +110,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                             </select>      
                         </div>
                         <div class="d-flex justify-content-center">                
-                            <button class='btn btn-warning' title="limpiar filtros" id="btnLimpiarBusqueda"><i class="fa fa-eraser" aria-hidden="true" ></i></button>
+                            <button class='btn btn-primary' title="limpiar filtros" id="btnLimpiarBusqueda"><i class="fa fa-eraser" aria-hidden="true" ></i></button>
                         </div>   
                     </div>
                 </div>
@@ -180,16 +180,16 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </div>
                 <form id="formTarea">    
-                    <div class="modal-body">
+                    <div class="modal-body clipboard">
                         <div class="form-group">
-                            <label  class="col-form-label font-weight-bold">Tipologia:</label>
+                            <label  class="col-form-label font-weight-bold">Tipología:</label>
                             <label  class="col-form-label" id="tipologia">...</label>
                         </div>
                         
                         <div class="form-group">
                             <label  class="col-form-label font-weight-bold">Estado:</label>
                             
-                            <label style="font-size:25px;"><span class="badge "  id="estado">...</span></label>
+                            <label style="font-size:25px;"><span class="badge"  id="estado">...</span></label>
                         </div>
                         
                         <div class="form-group">
@@ -204,12 +204,12 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         
                         <div class="form-group">
-                            <label  class="col-form-label font-weight-bold">Descripcion:</label>
+                            <label  class="col-form-label font-weight-bold">Descripción:</label>
                             <label  class="col-form-label" id="descripcion">...</label>
                         </div>
                         
                         <div class="form-group">
-                            <label  class="col-form-label font-weight-bold">Resolucion:</label>
+                            <label  class="col-form-label font-weight-bold">Resolución:</label>
                             <label  class="col-form-label" id="resolucion">...</label>
                         </div>
                         
@@ -224,7 +224,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                        
                         <div class="form-group">
-                            <label  class="col-form-label font-weight-bold">Area:</label>
+                            <label  class="col-form-label font-weight-bold">Área:</label>
                             <label  class="col-form-label" id="area">...</label>
                         </div>
                         
@@ -235,7 +235,14 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                        <label  class="col-form-label" id="confCopy"></label>
+                        <button type="button" class="btn btn-primary btnCopiador d-flex " title="Copiar al Portapapeles">
+                            <span class="material-icons">content_copy</span>
+                        </button>
+
+                        
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
                     </div>
                 </form>    
                 </div>

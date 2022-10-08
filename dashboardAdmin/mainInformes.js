@@ -10,19 +10,19 @@ $(document).ready(function(){
             switch(num){
                 case 'Pendiente':
                     $('td', row).eq(7).css({
-                        'background-color':'#F13D24',//rojo
+                        'background-color':'#e84c3d',//rojo
                         'color':'white'
                     });
                 break;
                 case 'Proceso':
                     $('td', row).eq(7).css({
-                        'background-color':'#FF932E',//naranja
+                        'background-color':'#ffcd02',//naranja
                         'color':'white'
                     });
                 break;
                 case 'Finalizada':
                     $('td', row).eq(7).css({
-                        'background-color':'#4df50e',//verde
+                        'background-color':'#2dcc70',//verde
                         'color':'white'
                     });
                 break;
@@ -79,6 +79,57 @@ $(document).ready(function(){
         
     });
 
+    //copiar en portapapeles
+
+   
+    $(document).on("click", ".btnCopiador", function(){
+
+        
+          
+        var tipologia = document.getElementById('tipologia').innerHTML;
+        var estado = document.getElementById('estado').innerHTML;
+        var cuadrilla = document.getElementById('cuadrilla').innerHTML;
+        var descripcion = document.getElementById('descripcion').innerHTML;
+        var resolucion = document.getElementById('resolucion').innerHTML;
+        var FechaIni = document.getElementById('FechaIni').innerHTML;
+        var FechaFin = document.getElementById('FechaFin').innerHTML;
+        var area = document.getElementById('area').innerHTML;
+        var jefe = document.getElementById('jefe').innerHTML;
+    
+        var empleado = document.getElementById('list').innerHTML;
+    
+        while(empleado.includes("</li>")){
+            empleado = empleado.replace('<li>','');
+            empleado = empleado.replace('</li>','-');
+        };
+    
+    
+        navigator.clipboard.writeText
+        (
+        "Tipología: "+ tipologia + "\n"+
+        "Estado: " +estado + "\n"+
+        "Cuadrilla: "+ cuadrilla + "\n"+
+        "Empleado/s: " + empleado + "\n"+
+        "Descripción: "+ descripcion + "\n"+
+        "Resolución: "+ resolucion + "\n"+
+        "Fecha inicio: "+ FechaIni + "\n"+
+        "Fecha Final: "+ FechaFin + "\n"+
+        "Área: " + area + "\n"+
+        "Jefe: " + jefe
+        )
+            .then(() => {
+            $("#confCopy").text("Copiado!"); 
+        })
+            .catch(err => {
+            alert("Ocurrio un error al intentar copiar los datos:\n" + err);
+
+        })
+        
+    
+        
+    });
+   
+
     //Variables globales 
     var tareaID;
     var minDate, maxDate;
@@ -86,13 +137,14 @@ $(document).ready(function(){
     //botón Detalles    
     
     $(document).on("click", ".btnDetalles", function(){
-        $("#formTareas").trigger("reset");
+        //$("#formTareas").trigger("reset");
+        $("#confCopy").text(""); 
 
         fila = $(this).closest("tr");
         tareaID = parseInt($(this).closest("tr").find('td:eq(0)').text());
         //Debo Tomar el ID_Tarea
         opci=1;
-        //Segunda consulta de Ajax
+        //consulta de Ajax
         $.ajax({
             url: "bd/crudInformes.php",
             type: "POST",
@@ -115,30 +167,27 @@ $(document).ready(function(){
 
                 switch(estado){
                     case 'Pendiente':
+                        $(".modal-header").css("background-color", "#e84c3d");
+
                         $("#estado").text(estado);
-                        $("#estado").removeClass("badge-warning");
-                        $("#estado").removeClass("badge-success");
-                        $("#estado").addClass("badge-danger");
-                        //$("#estado").css("background-color", "#F13D24");
-                        
-                        //$("#estado").css("color", "white");
+                        $("#estado").css("background-color", "#e84c3d");                       
+                        $("#estado").css("color", "white");
                     break;
                     case 'Proceso':
+                        $(".modal-header").css("background-color", "#ffcd02");
+
                         $("#estado").text(estado); 
-                        $("#estado").removeClass("badge-danger");
-                        $("#estado").removeClass("badge-success");
-                        $("#estado").addClass("badge-warning");
-                        //$("#estado").css("background-color", "#FF932E");
-                        //$("#estado").css("color", "white");
+
+                        $("#estado").css("background-color", "#ffcd02");
+                        $("#estado").css("color", "white");
                     break;
                     case 'Finalizada':
+                        $(".modal-header").css("background-color", "#2dcc70");
+
                         $("#estado").text(estado);  
 
-                        $("#estado").removeClass("badge-danger");
-                        $("#estado").removeClass("badge-warning");
-                        $("#estado").addClass("badge-success");
-                        //$("#estado").css("background-color", "#4df50e");
-                        //$("#estado").css("color", "white");
+                        $("#estado").css("background-color", "#2dcc70");
+                        $("#estado").css("color", "white");
                     break;
                 }   
                 
@@ -194,7 +243,7 @@ $(document).ready(function(){
         });
         
         
-        $(".modal-header").css("background-color", "#4e73df");
+        
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Detalles");      
         $("#modalCRUD").modal("show");  
