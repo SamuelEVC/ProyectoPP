@@ -5,6 +5,7 @@ unset($_SESSION["s_idRol"]);
 unset($_SESSION["s_rol_descripcion"]);
 unset($_SESSION["s_idUsuario"]);
 unset($_SESSION["s_nombre"]);
+unset($_SESSION["s_area"]);
 session_destroy();
 header("Location: ../index.php");
 ?>

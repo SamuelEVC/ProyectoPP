@@ -141,7 +141,10 @@ if($_SESSION["s_usuario"] === null){
 
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
-            <h3 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h3> 
+            
+            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info"><?php echo $_SESSION["s_area"]; ?></span></h4> 
+
+            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

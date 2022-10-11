@@ -25,9 +25,15 @@ switch($opci){
         $resultado->execute();
         $nombreUsers = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
+        /*
         foreach($nombreUsers as $dat12) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
             $UserID = $dat12['id'];
         }
+        */
+        $UserID = $nombreUsers[0]['id'];
+
+
+
 
         //Incert en tabla tareas
         $consulta = "INSERT INTO `db_siadpe`.`tareas` ( `descripcion`, `resolucion`, `fecha_inicio`,  `id_jefe`, `id_estado`, `id_tipologia`) VALUES ( '$descripcion', '', '$date', '$UserID', 1, '$tipologia')";		
@@ -40,9 +46,12 @@ switch($opci){
         $resultado->execute();
         $idtareas = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
+        /*
         foreach($idtareas as $dat123) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
             $idtarea = $dat123['maxid'];
-        }
+        }*/
+
+        $idtarea = $idtareas[0]['maxid'];
 
 
 

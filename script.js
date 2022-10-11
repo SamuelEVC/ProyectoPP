@@ -15,13 +15,14 @@ $('#formLogin').submit(function(e){
            type:"POST",
            datatype: "json",
            data: {usuario:usuario, password:password}, 
-           success:function(data){               
+           success:function(data){  
+               //console.log(data);             
                if(data == "null"){
                    Swal.fire({
                        type:'error',
                        title:'Usuario y/o password incorrecta',
-                   });
-               }else{
+                    });
+                }else{
                     window.location.href = "dashboardAdmin/index.php";//AQUI SE HACE LA REDIRECCION  
                }
            }    
