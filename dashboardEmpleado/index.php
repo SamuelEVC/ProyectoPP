@@ -8,19 +8,19 @@ $conexion = $objeto->Conectar();
 
 //consulta oendientes
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente'";
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente'";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPen=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Proceso'";
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Proceso'";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPros=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada'";
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada'";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
@@ -69,7 +69,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                        <span class="align-middle"><?php echo $dat['Cuadrilla'] ?></span>
+                                        <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
                                     </p>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                        <span class="align-middle"><?php echo $dat['Cuadrilla'] ?></span>
+                                            <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
                                     </p>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                        <span class="align-middle"><?php echo $dat['Cuadrilla'] ?></span>
+                                            <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
                                     </p>
                                 </div>
                             </div>
