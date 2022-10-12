@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2022 a las 04:51:07
+-- Tiempo de generación: 12-10-2022 a las 03:25:36
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `areas` (
 --
 
 INSERT INTO `areas` (`id`, `nombre`) VALUES
-(1, 'Direccion'),
+(1, 'Dirección'),
 (2, 'Contaduria');
 
 -- --------------------------------------------------------
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `tareas` (
   KEY `id_estado` (`id_estado`),
   KEY `id_tipologia` (`id_tipologia`),
   FULLTEXT KEY `resolucion` (`resolucion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `tareas`
@@ -178,13 +178,14 @@ CREATE TABLE IF NOT EXISTS `tareas` (
 
 INSERT INTO `tareas` (`id`, `descripcion`, `resolucion`, `fecha_inicio`, `fecha_finalizacion`, `id_jefe`, `id_estado`, `id_tipologia`) VALUES
 (1, 'Tarea de Reparacion Ejemplo', '', '2022-09-30', NULL, 1, 1, 1),
-(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', NULL, 1, 2, 4),
-(4, 'Tarea de distribución ejemplo', 'La Tarea se finalizo con Exito!', '2022-09-30', '2022-10-05', 1, 3, 3),
-(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', '', '2022-09-30', NULL, 1, 2, 2),
-(6, 'texto corto', '', '2022-09-30', NULL, 1, 1, 2),
-(7, 'Pedir unas Pizzas y Gaseosa, en la casa de Juan', '', '2022-09-30', NULL, 1, 1, 2),
-(8, 'prueba de tarea, homero sipson', '', '2022-10-04', NULL, 1, 1, 5),
-(9, 'tarea ejemplo usuario 2', '', '2022-10-06', NULL, 2, 1, 2);
+(3, 'Tarea de ensamblaje Ejemplo', '', '2022-09-30', NULL, 1, 1, 4),
+(4, 'Tarea de distribución ejemplo', 'La Tarea se finalizo con Exito!', '2022-09-30', '2022-10-11', 1, 3, 3),
+(5, 'Ejemplo de tarea con muucha descripción - hola soy homero simposo, ahora voy a nombrarte las ventajas de programar con PHP sin conocerlo. ventaja 1: Fin de las ventajas', 'La tarea se finalizo con éxito a pesar de no conocer PHP, Yoda estaría orgulloso!', '2022-09-30', '2022-10-12', 1, 3, 2),
+(6, 'texto corto', '', '2022-09-30', NULL, 1, 2, 2),
+(7, 'Pedir unas Pizzas y Gaseosa, en la casa de Juan', '', '2022-09-30', NULL, 1, 2, 2),
+(8, 'prueba de tarea, homero sipson', '', '2022-10-04', NULL, 1, 2, 5),
+(9, 'tarea ejemplo usuario 2', '', '2022-10-06', NULL, 2, 2, 2),
+(10, 'prueba tarea Jefe 2 Delivery de mate cocido', '', '2022-10-10', NULL, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tareas_empleados` (
   KEY `id_empleado` (`id_empleado`),
   KEY `id_cuadrilla` (`id_cuadrilla`),
   KEY `id_tarea` (`id_tarea`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=17 ;
 
 --
 -- Volcado de datos para la tabla `tareas_empleados`
@@ -213,10 +214,13 @@ INSERT INTO `tareas_empleados` (`id`, `id_empleado`, `id_cuadrilla`, `id_tarea`)
 (5, 2, 2, 5),
 (6, 2, 2, 6),
 (7, 2, 2, 7),
-(8, 2, 2, 8),
 (10, 1, 1, 4),
 (11, 3, 1, 4),
-(12, 2, 2, 9);
+(12, 2, 2, 9),
+(13, 1, 1, 10),
+(14, 3, 1, 10),
+(15, 1, 1, 8),
+(16, 3, 1, 8);
 
 -- --------------------------------------------------------
 

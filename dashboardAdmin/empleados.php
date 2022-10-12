@@ -1,6 +1,6 @@
 <?php require_once "vistas/parte_superior.php"?>
 <?php
-include_once '/bd/conexion.php';
+include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 

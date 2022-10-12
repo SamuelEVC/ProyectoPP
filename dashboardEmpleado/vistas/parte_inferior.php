@@ -64,11 +64,15 @@
     <!-- bundle -->
     <script src="js/vendor.min.js"></script>
     <script src="js/app.min.js"></script>
-     <!-- dragula js-->
+
+
+
+     <!-- dragula js
      <script src="js/dragula.min.js"></script>
-    <!-- demo js -->
-    <script src="js/componen.dragula.js"></script>
-    
+     
+    <!-- demo js  
+    <script src="js/componen.dragula.js"></script> -->
+   
 
 </body>
 
