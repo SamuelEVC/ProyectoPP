@@ -1,6 +1,6 @@
 <?php require_once "vistas/parte_superior.php"?>
 
-<?php 
+<?php
 
 include_once '../bd/conexion.php';
 $objeto = new Conexion();
@@ -8,20 +8,21 @@ $conexion = $objeto->Conectar();
 
 //consulta oendientes
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente'";
+
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente' GROUP BY tarea_ID";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPen=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Proceso'";
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Proceso' GROUP BY tarea_ID";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPros=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada'";
 
+$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada' GROUP BY tarea_ID";
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -44,11 +45,11 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         <h5 id="ColumPro" class="mt-0 task-header text-uppercase">Pendiente</h5>
                         <div id="task-list-one" class="task-list-items">
 
-                        
+
 
                             <!-- Tarea 1 -->
-                            <?php                            
-                                foreach($dataPen as $dat) { 
+                            <?php
+                                foreach($dataPen as $dat) {
                             ?>
 
                             <div class="card mb-0" draggable="true">
@@ -61,21 +62,21 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
                                     </h5>
 
-                                    <p class="mb-0">                                                            
-                                        <span class="card-text">                                                                
-                                        <?php echo $dat['TareaDesc'] ?> 
+                                    <p class="mb-0">
+                                        <span class="card-text">
+                                        <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                        <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
+                                        <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
                             <!-- Finaliza tarea 1 -->
 
-                            <?php                            
+                            <?php
                                 }
                             ?>
 
@@ -86,14 +87,14 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <!-- COMIENZA SEGUNDA COLUMNA -->
                     <div class="tasks">
                         <h5 id="ColumPro" class="mt-0 task-header text-uppercase">En proceso</h5>
-                        
+
 
                         <div id="task-list-two" class="task-list-items">
 
                             <!-- Tarea 1 -->
-                            
-                            <?php                            
-                                foreach($dataPros as $dat) { 
+
+                            <?php
+                                foreach($dataPros as $dat) {
                             ?>
 
                             <div class="card mb-0" draggable="true" >
@@ -106,21 +107,21 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
                                     </h5>
 
-                                    <p class="mb-0">                                                            
-                                        <span class="card-text">                                                                
-                                        <?php echo $dat['TareaDesc'] ?> 
+                                    <p class="mb-0">
+                                        <span class="card-text">
+                                        <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                            <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
+                                            <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
                             <!-- Finaliza tarea 1 -->
 
-                            <?php                            
+                            <?php
                                 }
                             ?>
 
@@ -131,14 +132,14 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <!-- COMIENZA TERCER COLUMNA -->
                     <div class="tasks" >
                         <h5 id="ColumPro" class="mt-0 task-header text-uppercase">Finalizado</h5>
-                        <div id="task-list-three" class="task-list-items">                                               
-                            
+                        <div id="task-list-three" class="task-list-items">
+
                         <!-- Tarea 1 -->
-                        <?php                            
-                                foreach($dataFin as $dat) { 
+                        <?php
+                                foreach($dataFin as $dat) {
                             ?>
 
-                            <div class="card mb-0" draggable="true">
+                         <div class="card mb-0" draggable="true">   <!--  quitar el daggable -->
                                 <div class="card-body p-3">
                                     <small class="float-end text-muted"><?php echo $dat['FechaInicio'] ?></small>
                                     <span style="background-color: rgb(28, 200, 138); color: white;" class="badge"><?php echo $dat['Estado'] ?></span>
@@ -148,21 +149,21 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
                                     </h5>
 
-                                    <p class="mb-0">                                                            
-                                        <span class="card-text">                                                                
-                                        <?php echo $dat['TareaDesc'] ?> 
+                                    <p class="mb-0">
+                                        <span class="card-text">
+                                        <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
                                     <p class="mb-0">
                                         <img src="img/icono_personas.png" alt="icono"
                                             class="avatar-xs rounded-circle me-1">
-                                            <span id= "idtarea" class="align-middle"><?php echo $dat['id'] ?></span>
+                                            <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
                             <!-- Finaliza tarea 1 -->
 
-                            <?php                            
+                            <?php
                                 }
                             ?>
 
@@ -171,9 +172,9 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <!-- FINALIZA TERCER COLUMA -->
 
                 </div> <!-- end .board-->
-            </div> <!-- end col --> 
+            </div> <!-- end col -->
         </div><!-- end row-->
-    </div> <!-- content -->        
+    </div> <!-- content -->
 </div>
 
 

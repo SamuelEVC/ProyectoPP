@@ -6,6 +6,7 @@ $conexion = $objeto->Conectar();
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['tareaID'])) ? $_POST['tareaID'] : '';
+$date = date('y-m-d'); 
 
 switch($opcion){
     case 1: //Pendiente
@@ -20,7 +21,16 @@ switch($opcion){
         if($estado != 1){        
             $consulta = "UPDATE `tareas` SET `id_estado` = '1' WHERE `tareas`.`id` = $id";		
             $resultado = $conexion->prepare($consulta);
-            $resultado->execute();}        
+            $resultado->execute();
+        
+            
+            if($fechaFinal != 'NULL'){ 
+                $consulta = "UPDATE `tareas` SET `fecha_finalizacion` = NULL  WHERE `tareas`.`id` = $id";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+            }
+
+        }        
         break;
 
     case 2: //Proceso
@@ -34,7 +44,26 @@ switch($opcion){
         if($estado != 2){
             $consulta = "UPDATE `tareas` SET `id_estado` = '2' WHERE `tareas`.`id` = $id";		
             $resultado = $conexion->prepare($consulta);
-            $resultado->execute();}        
+            $resultado->execute();
+
+            $consulta = "SELECT tareas.fecha_finalizacion FROM `tareas` WHERE tareas.id = $id";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $fechaFinas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            $fechaFinal = $fechaFinas[0]['fecha_finalizacion'];
+
+            if($fechaFinal != 'NULL'){ 
+
+
+                $consulta = "UPDATE `tareas` SET `fecha_finalizacion` = NULL WHERE `tareas`.`id` = $id";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+            }
+
+        }    
+            
+            
         break;      
 
     case 3://Finalizado
@@ -45,10 +74,28 @@ switch($opcion){
 
         $estado = $idestado[0]['id_estado'];
 
-            if($estado != 3){ 
+        if($estado != 3){ 
             $consulta = "UPDATE `tareas` SET `id_estado` = '3' WHERE `tareas`.`id` = $id";		
             $resultado = $conexion->prepare($consulta);
-            $resultado->execute();}        
+            $resultado->execute();     
+
+            
+            $consulta = "SELECT tareas.fecha_finalizacion FROM `tareas` WHERE tareas.id = $id";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $fechaFinas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            $fechaFinal = $fechaFinas[0]['fecha_finalizacion'];
+
+            if($fechaFinal == NULL){ 
+
+
+                $consulta = "UPDATE `tareas` SET `fecha_finalizacion` = '$date' WHERE `tareas`.`id` = $id";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+
+            }
+        }
         break;        
 }
 
