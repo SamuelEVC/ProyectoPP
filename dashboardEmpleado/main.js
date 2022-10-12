@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
 });
 
 //variables globales
@@ -9,17 +9,17 @@ function ResolucionF(){
     //$("#formResolucion").trigger("reset");
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Resolucion");            
-    $("#modalCRUD").modal("show");        
-    
-};   
+    $(".modal-title").text("Resolucion");
+    $("#modalCRUD").modal("show");
+
+};
 
 
 
 $("#form").submit(function(e){
-    e.preventDefault(); 
-     
-    Resolucion = $.trim($("#resTarea").val());  
+    e.preventDefault();
+
+    Resolucion = $.trim($("#resTarea").val());
     //console.log(Resolucion +  tareaID );
 
     if(Resolucion == null ){
@@ -30,21 +30,21 @@ $("#form").submit(function(e){
 
     window.location.reload();
 
-    $("#modalCRUD").modal("hide"); 
+    $("#modalCRUD").modal("hide");
 });
 
 
-$(document).on("click", ".btnCancelar", function(){    
-    
-    $("#modalCRUD").modal("hide");  
+$(document).on("click", ".btnCancelar", function(){
+
+    $("#modalCRUD").modal("hide");
     window.location.reload();
 
 });
 
 function update(tareaID, opcion, Resolucion){
-    
-   
-        
+
+
+
     console.log("Reso: "+Resolucion +"| Opcion: "+ opcion +"| Tarea ID: "+ tareaID);
 
             $.ajax({
@@ -116,17 +116,17 @@ for (let i = 0; i < listCards.length ; i++){
         const list = lists[j];
         list.addEventListener('dragover', function(e){
             e.preventDefault();
-        });    
+        });
         list.addEventListener('dragenter', function(e){
             e.preventDefault();
-        });    
+        });
         list.addEventListener('drop', function(e){
             this.append(draggedItem);
 
             // console.log($(draggedItem.querySelectorAll("#idtarea")).text())
 
             //console.log($(this.querySelectorAll("#ColumPro")).text());
-            
+
             tareaID =$(draggedItem.querySelectorAll("#idtarea")).text();
 
             // cambios de texto y color y actualiza BBDD
@@ -140,29 +140,29 @@ for (let i = 0; i < listCards.length ; i++){
 
 
                 update(tareaID, 2,"");
-                
+
             } else if(columna == "Finalizado") {
 
                 ResolucionF();
-                
+
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#2dcc70");
                 $(draggedItem.querySelectorAll(".badge")).text( "Finalizado");
                 console.log(" 3 Finalizado ");
 
-                
+
 
             }else if(columna == "Pendiente"){
-                
+
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#e84c3d");
                 $(draggedItem.querySelectorAll(".badge")).text( "Pendiente");
                 console.log(" 1 Pendientes ");
 
                 update(tareaID, 1,"");
-                
+
             }else{
-                
+
                 console.log("ERROR en detectar la tabla")
-                
+
             }
             // console.log( $( "#ColumPro" )
             // .contents()
@@ -172,8 +172,8 @@ for (let i = 0; i < listCards.length ; i++){
             // .wrap( "<b></b>" ));
             // console.log( $("#ColumPro").text($("h5").text()));
 
-            
-            
+
+
 
 
         });
@@ -183,5 +183,3 @@ for (let i = 0; i < listCards.length ; i++){
 
 
 }
-
-
