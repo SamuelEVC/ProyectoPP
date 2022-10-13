@@ -53,7 +53,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
 <!-- prueba de codigo para kanban -->
 
 
-<div class="content-page">
+<div class="content-page" style="margin-left: 0px;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -72,7 +72,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($dataPen as $dat) {
                             ?>
 
-                            <div class="card mb-0" draggable="true">
+                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda'>
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -123,7 +123,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($dataPros as $dat) {
                             ?>
 
-                            <div class="card mb-0" draggable="true" >
+                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda'>
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted" >Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -168,7 +168,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($dataFin as $dat) {
                             ?>
 
-                         <div class="card mb-0"  draggable="true">   <!--  quitar el daggable   draggable="true"-->
+                         <div class="card mb-0"  draggable="true" title='Puede deshacer la finalizacion arrastrando &#10;la tarea a otra columna.'>   <!--  quitar el daggable   draggable="true"-->
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -253,7 +253,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
         </div>                        
 
     </div> <!-- content -->
-</div>
+
 
 
 

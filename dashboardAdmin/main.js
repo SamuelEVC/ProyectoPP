@@ -36,7 +36,7 @@ tablaTareasDiarias = $("#tablaTareasDiarias").DataTable({
     "columnDefs":[{
      "targets": -1,
      "data":null,
-     "defaultContent": "<div class='text-center'><div class='btn-group' id='btnAbsolutes'><button class='btn btn-primary btnEditarTarea' title='editar tarea de la fila'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnBorrarTarea' title='borrar fila'><i class='fa fa-trash' aria-hidden='true'></i></button> </div>"  
+     "defaultContent": "<div class='text-center'><div class='btn-group' id='btnAbsolutes'><button class='btn btn-primary btnEditarTarea' title='Editar tarea de la fila'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnBorrarTarea' title='Borrar fila'><i class='fa fa-trash' aria-hidden='true'></i></button> </div>"  
     }],
      
  "language": {
@@ -180,7 +180,7 @@ $("#formTareas").submit(function(e){
     console.log(isNumber(cuadrilla));
 
 
-    if(isNumber(tipologia) && isNumber(cuadrilla)){
+    if(isNumber(tipologia) && isNumber(cuadrilla)&& descripcion != ""){
         $.ajax({
             url: "bd/crudTareaDiaria.php",
             type: "POST",
@@ -230,7 +230,7 @@ $("#formTareas").submit(function(e){
         });
         $("#modalCRUD").modal("hide");  
     }else{
-        alert("Seleccione un tipo o una cuadrilla para enviar formulario");
+        alert("Seleccione un tipo o una cuadrilla o escriba una descripcion para enviar formulario");
 
     }
 
