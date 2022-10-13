@@ -222,7 +222,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        <button type="button" class="close btnCancelar" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <form id="form">
