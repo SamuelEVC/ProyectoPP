@@ -145,16 +145,16 @@ if($_SESSION["s_usuario"] === null){
             
 
 
-            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info"><?php echo $_SESSION["s_area"]; ?></span></h4> 
+            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h4> 
 
-            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
+            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-warning" style="font-size:22px;"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nombreUsuario"><?php echo $_SESSION["s_nombre"];?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nombreUsuario" style="font-size:20px;"><?php echo $_SESSION["s_nombre"];?></span>
                 <!--  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/Neco-Arc-Glasses.jpg">
               </a>

@@ -8,7 +8,7 @@ $conexion = $objeto->Conectar();
 
 //consulta oendientes
 
-session_start();
+
 $CuadrillaID = $_SESSION["s_idCuadrilla"];
 
 
@@ -23,7 +23,7 @@ $CuadrillaID = $_SESSION["s_idCuadrilla"];
 // $resultado->execute();
 // $Cuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-// $CuadrillaID = $Cuadrillas[0]['id'];
+// $CuadrillaID = $Cuadrillas[0]['id'];  
 
 
 $Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente' and Cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
@@ -74,32 +74,29 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
                             <div class="card mb-0" draggable="true">
                                 <div class="card-body p-3">
-                                    <small class="float-end text-muted"><?php echo $dat['FechaInicio'] ?></small>
+                                    <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
+                                    <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
+
                                     <br>
-                                    <small class="float-end text-muted"><?php echo $dat['fecha_Finalizacion'] ?></small>
-                                    <span style="background-color: rgb(232, 76, 61); color: white;" class="badge "><?php echo $dat['Estado'] ?></span>
 
-                                    <h5 class="mt-2 mb-2">
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
-                                    </h5>
+                                    <span style="background-color: rgb(232, 76, 61); color: white; font-size:15px;" class="badge "><?php echo $dat['Estado'] ?></span>
+                                    <br>
 
+                                    <label  class="col-form-label font-weight-bold">Tipología:</label>
+                                    <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
+
+                                     <br>
+                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
-                                    <br>
-                                    <p class="mb-0">
-                                        <span class="card-text">
-                                        <?php echo $dat['Resolucion'] ?>
-                                        </span>
-                                    </p>
-
-                                    <p class="mb-0">
-                                        <img src="img/icono_personas.png" alt="icono"
-                                            class="avatar-xs rounded-circle me-1">
-                                        <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
+                                    
+                                    
+                                    <p class="mb-0">   
+                                    <span class="align-middle" style="color:#26A2AE";>#</span>
+                                        <span id="idtarea" class="align-middle" style="color:#26A2AE";><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
@@ -128,32 +125,26 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
                             <div class="card mb-0" draggable="true" >
                                 <div class="card-body p-3">
-                                    <small class="float-end text-muted"><?php echo $dat['FechaInicio'] ?></small>
+                                    <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
+                                    <small class="float-end text-muted" >Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
                                     <br>
-                                    <small class="float-end text-muted"><?php echo $dat['fecha_Finalizacion'] ?></small>
-                                    <span style="background-color: rgb(255, 205, 2); color: white;" class="badge"><?php echo $dat['Estado'] ?></span>
-
-                                    <h5 class="mt-2 mb-2">
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
-                                    </h5>
-
+                                    
+                                    <span style="background-color: rgb(255, 205, 2); color: white; font-size:15px;" class="badge"><?php echo $dat['Estado'] ?></span>
+                                    <br>
+                                    <label  class="col-form-label font-weight-bold">Tipología:</label>
+                                    <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
+                                    
+                                    <br>
+                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
-                                    <br>
-                                    <p class="mb-0">
-                                        <span class="card-text">
-                                        <?php echo $dat['Resolucion'] ?>
-                                        </span>
-                                    </p>
-
-                                    <p class="mb-0">
-                                        <img src="img/icono_personas.png" alt="icono"
-                                            class="avatar-xs rounded-circle me-1">
-                                            <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
+                                    
+                                    <p class="mb-0">   
+                                        <span class="align-middle" style="color:#26A2AE";>#</span>
+                                        <span id="idtarea" class="align-middle" style="color:#26A2AE";><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
@@ -179,33 +170,34 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
                          <div class="card mb-0"  draggable="true">   <!--  quitar el daggable   draggable="true"-->
                                 <div class="card-body p-3">
-                                    <small class="float-end text-muted"><?php echo $dat['FechaInicio'] ?></small>
+                                    <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
+                                    <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
                                     <br>
-                                    <small class="float-end text-muted"><?php echo $dat['fecha_finalizacion'] ?></small>
-                                    <span style="background-color: rgb(28, 200, 138); color: white;" class="badge"><?php echo $dat['Estado'] ?></span>
+                                    <small class="float-end text-muted">Fecha Finalizacion: <?php echo $dat['fecha_finalizacion'] ?></small>
+                                    <span style="background-color: rgb(28, 200, 138); color: white; font-size:15px;" class="badge"><?php echo $dat['Estado'] ?></span>
 
-                                    <h5 class="mt-2 mb-2">
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#task-detail-modal" class="text-body"><?php echo $dat['Tipos'] ?></a>
-                                    </h5>
-
+                                    <label  class="col-form-label font-weight-bold">Tipología:</label>
+                                    <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
+                                    
+                                    <br>
+                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
-                                    <br>
+                                    
+                                    <label  class="col-form-label font-weight-bold">Resolucion:</label>
                                     <p class="mb-0">
-                                        <span class="card-text">
+                                        <span class="card-text" placeholder="Sin Resolucion">
                                         <?php echo $dat['Resolucion'] ?>
                                         </span>
                                     </p>
 
+                                    <p class="mb-0">   
 
-                                    <p class="mb-0">
-                                        <img src="img/icono_personas.png" alt="icono"
-                                            class="avatar-xs rounded-circle me-1">
-                                            <span id= "idtarea" class="align-middle"><?php echo $dat['tarea_ID'] ?></span>
+                                        <span class="align-middle" style="color:#26A2AE";>#</span>
+                                        <span id="idtarea" class="align-middle" style="color:#26A2AE";><?php echo $dat['tarea_ID'] ?></span>
                                     </p>
                                 </div>
                             </div>
@@ -222,6 +214,8 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                 </div> <!-- end .board-->
             </div> <!-- end col -->
         </div><!-- end row-->
+
+
         <!-- /.container-fluid -->
         <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -232,8 +226,8 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </div>
                     <form id="form">
-                        <div class="modal-body">
-
+                        <div class="modal-body">    
+                                                 
                             <div class="row justify-content-md-center">
                                 <div class="col-lg-8">
                                     <div class="input-group mb-3">
@@ -244,7 +238,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="input-group mb-3">
                                             <textarea class="form-control" aria-label="With textarea" id="resTarea" style="min-height: 150px; height: 150px;" placeholder="No es obligatorio una resolucion!" maxlength="300"></textarea>
                                         </div>
-
+                                        
                                     </div>
                                     </div>
                                 </div>
@@ -253,14 +247,13 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light btnCancelar" id="cancelar">Cancelar</button>
                                 <button type="submit" id="btnGuardar" class="btn btn-dark">Enviar</button>
-                            </div>
-                    </form>
+                            </div>                    
+                    </form>    
             </div>
-        </div>
+        </div>                        
 
     </div> <!-- content -->
 </div>
-
 
 
 

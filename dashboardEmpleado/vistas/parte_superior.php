@@ -22,24 +22,25 @@ if($_SESSION["s_usuario"] === null){
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!--datables CSS básico-->
-    <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->
-    
-    <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">      
+  <!--datables CSS básico-->
+  <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
+  <!--datables estilo bootstrap 4 CSS-->
+  
+  <link rel="stylesheet"  type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">      
 
-    <!-- App favicon -->
-    <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
-    <!-- App css -->
-    <link href="css/icons.min.css" rel="stylesheet" type="text/css">
-    <link href="css/app.min.css" rel="stylesheet" type="text/css" id="app-style">
+  <!-- App favicon -->
+  <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+  <!-- App css -->
+  <link href="css/icons.min.css" rel="stylesheet" type="text/css">
+  <link href="css/app.min.css" rel="stylesheet" type="text/css" id="app-style">
 
-
+  <!--datables personalizado-->  
+  <link rel="stylesheet"  type="text/css" href="styleEmpleados.css">  
     
 </head>
 
@@ -122,10 +123,10 @@ if($_SESSION["s_usuario"] === null){
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
 
-            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info"><?php echo $_SESSION["s_area"]; ?></span></h4> 
-            <h4 class="text-center ml-2 mt-3">Cuadrilla: <span class="badge badge-danger"><?php echo $_SESSION["s_cuadrilla"]; ?></span></h4> 
+            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h4> 
+            <h4 class="text-center ml-2 mt-3">Cuadrilla: <span class="badge badge-danger" style="font-size:22px;"><?php echo $_SESSION["s_cuadrilla"]; ?></span></h4> 
 
-            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-success"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
+            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-success" style="font-size:22px;"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
             
 
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -133,7 +134,7 @@ if($_SESSION["s_usuario"] === null){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_nombre"];?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px;"><?php echo $_SESSION["s_nombre"];?></span>
                 <!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/Neco-Arc.jpg">
               </a>

@@ -70,7 +70,7 @@
      <!-- dragula js
      <script src="js/dragula.min.js"></script>
      
-    <!-- demo js  
+     demo js  
     <script src="js/componen.dragula.js"></script> -->
    
 
