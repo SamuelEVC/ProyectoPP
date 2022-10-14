@@ -26,14 +26,14 @@ $CuadrillaID = $_SESSION["s_idCuadrilla"];
 // $CuadrillaID = $Cuadrillas[0]['id'];  
 
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Pendiente' and Cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Pendiente' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPen=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Proceso' and Cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Proceso' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 
 
 $resultado= $conexion->prepare($Consulta);
@@ -41,7 +41,7 @@ $resultado->execute();
 $dataPros=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
-$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada' and Cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Finalizada' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 //$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada' GROUP BY tarea_ID";
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();

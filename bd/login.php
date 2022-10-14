@@ -1,7 +1,7 @@
 <?php
+include_once '../bd/conexion.php';
 session_start();
 
-include_once 'conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
@@ -10,33 +10,6 @@ $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 
 $pass = md5($password); //encripto la clave enviada por el usuario para compararla con la clava encriptada y almacenada en la BD
-
-/*
-$consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, Areas.nombre
-FROM 
-
-usuarios JOIN roles ON usuarios.idRol = roles.id 
-
-
-inner join jefes on usuarios.id = jefes.id_usuario
-inner join areas  on jefes.id_area = areas.id
-
-inner join empleados on usuarios.id = empleados.id_usuario
-inner join cuadrillas on empleados.id_cuadrilla = cuadrillas.id
-inner join areas  on cuadrillas.id_area = areas.id
-";*/
-
-
-/*
-$ConsultaRol = "SELECT  roles.descripcion AS rol
-FROM 
-usuarios JOIN roles ON usuarios.idRol = roles.id 
-WHERE usuarios.usuario='$usuario' AND usuarios.password='$pass' ";
-$resultado = $conexion->prepare($ConsultaRol);
-$resultado->execute();
-$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-$rol=$data[0]["rol"];*/
-
 
 
 
@@ -58,7 +31,7 @@ if($resultado->rowCount() >= 1){
     
 
     if($rol  == 'admin'){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, Areas.nombre As area
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area
         FROM 
         usuarios JOIN roles ON usuarios.idRol = roles.id 
 
@@ -70,7 +43,7 @@ if($resultado->rowCount() >= 1){
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         
-
+        print_r($data);
         $_SESSION["s_idUsuario"] = $data[0]["idUsuario"];
         $_SESSION["s_usuario"] = $usuario;
         $_SESSION["s_nombre"] = $data[0]["nombreUsuario"];
@@ -79,7 +52,7 @@ if($resultado->rowCount() >= 1){
         $_SESSION["s_area"] = $data[0]["area"];
         
     }elseif($rol  == 'empleado'){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, Areas.nombre As area, Cuadrillas.id as idCuadrilla,  Cuadrillas.nombre as Cuadrilla
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla
         FROM usuarios JOIN roles ON usuarios.idRol = roles.id 
 
         inner join empleados on usuarios.id = empleados.id_usuario

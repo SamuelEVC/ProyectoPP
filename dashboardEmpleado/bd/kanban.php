@@ -4,6 +4,9 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
+$BdNombre = 'db_siadpe';//prueba local
+//$BdNombre = 'bnmgyrcrc1muus4oltqk';//Produccion
+
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['tareaID'])) ? $_POST['tareaID'] : '';
 $Resolucion = (isset($_POST['Resolucion'])) ? $_POST['Resolucion'] : '';
@@ -52,7 +55,7 @@ switch($opcion){
             if($res != ''){ 
     
     
-                $consulta = "UPDATE `db_siadpe`.`tareas` SET `resolucion` = '' WHERE `tareas`.`id` = $id";
+                $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '' WHERE `tareas`.`id` = $id";
                 $resultado = $conexion->prepare($consulta);
                 $resultado->execute();
             }
@@ -101,7 +104,7 @@ switch($opcion){
             if($res != ''){ 
 
 
-                $consulta = "UPDATE `db_siadpe`.`tareas` SET `resolucion` = '' WHERE `tareas`.`id` = $id";
+                $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '' WHERE `tareas`.`id` = $id";
                 $resultado = $conexion->prepare($consulta);
                 $resultado->execute();
             }
@@ -142,7 +145,7 @@ switch($opcion){
 
             }
 
-            $consulta = "UPDATE `db_siadpe`.`tareas` SET `resolucion` = '$Resolucion' WHERE `tareas`.`id` = $id";
+            $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '$Resolucion' WHERE `tareas`.`id` = $id";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             $idestado = $resultado->fetchAll(PDO::FETCH_ASSOC);

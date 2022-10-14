@@ -3,7 +3,7 @@
 <!--INICIO del cont principal-->
 
 <?php
-include_once '../bd/conexion.php';
+include_once 'bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
@@ -14,9 +14,7 @@ $areaSession = $_SESSION["s_area"];
 //$consultaTareDia = "SELECT Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_id, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id";
 
 //$consultaTareDia = "SELECT Tareas.id AS tarea_ID, Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_ID, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id GROUP BY tarea_ID";
-  $consultaTareDia = "SELECT Tareas.id AS tarea_ID, Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_ID, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id INNER JOIN jefes on tareas.id_jefe = jefes.id INNER JOIN areas on jefes.id_area = areas.id WHERE areas.nombre = '$areaSession' GROUP BY tarea_ID";
-
-
+$consultaTareDia = "SELECT tareas.id AS tarea_ID, tipologias.id AS tipologia_ID, tipologias.descripcion AS tipologia, cuadrillas.id AS cuadrilla_ID, cuadrillas.nombre AS cuadrilla, estados.id AS estado_ID, estados.estado, tareas.descripcion, tareas.fecha_inicio AS fecha_Ini FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id INNER JOIN jefes on tareas.id_jefe = jefes.id INNER JOIN areas on jefes.id_area = areas.id WHERE areas.nombre = '$areaSession' GROUP BY Tarea_ID";
 $resultadoTareDia = $conexion->prepare($consultaTareDia);
 $resultadoTareDia->execute();
 $dataTareDia=$resultadoTareDia->fetchAll(PDO::FETCH_ASSOC);

@@ -4,6 +4,12 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
+//prueba local
+$BdNombre = 'db_siadpe';
+//Produccion
+//$BdNombre = 'bnmgyrcrc1muus4oltqk';
+
+
 session_start();
 $idUsuario = $_SESSION["s_idUsuario"];
 
@@ -36,7 +42,7 @@ switch($opci){
 
 
         //Incert en tabla tareas
-        $consulta = "INSERT INTO `db_siadpe`.`tareas` ( `descripcion`, `resolucion`, `fecha_inicio`,  `id_jefe`, `id_estado`, `id_tipologia`) VALUES ( '$descripcion', '', '$date', '$UserID', 1, '$tipologia')";		
+        $consulta = "INSERT INTO `$BdNombre`.`tareas` ( `descripcion`, `resolucion`, `fecha_inicio`,  `id_jefe`, `id_estado`, `id_tipologia`) VALUES ( '$descripcion', '', '$date', '$UserID', 1, '$tipologia')";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         
@@ -68,7 +74,7 @@ switch($opci){
             $idEmpleado = $dat['EmpleadoID'];
             
 
-            $consulta = "INSERT INTO `db_siadpe`.`tareas_empleados` ( `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES ( '$idEmpleado','$cuadrilla', '$idtarea')";
+            $consulta = "INSERT INTO `$BdNombre`.`tareas_empleados` ( `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES ( '$idEmpleado','$cuadrilla', '$idtarea')";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
 
@@ -83,13 +89,13 @@ switch($opci){
        
     case 2: //modificación
         
-        $consulta = "UPDATE `db_siadpe`.`tareas` SET `descripcion` = '$descripcion', `id_tipologia` = '$tipologia' WHERE `tareas`.`id` ='$tareaID' ;";		
+        $consulta = "UPDATE `$BdNombre`.`tareas` SET `descripcion` = '$descripcion', `id_tipologia` = '$tipologia' WHERE `tareas`.`id` ='$tareaID' ;";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
 
         
         //borro empleados viejos
-        $consulta = "DELETE FROM `db_siadpe`.`tareas_empleados` WHERE `tareas_empleados`.`id_tarea` = $tareaID";
+        $consulta = "DELETE FROM `$BdNombre`.`tareas_empleados` WHERE `tareas_empleados`.`id_tarea` = $tareaID";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();  
         //acomodo la autoincrementalidad
@@ -109,17 +115,13 @@ switch($opci){
             $idEmpleado = $dat['EmpleadoID'];
             
 
-            $consulta = "INSERT INTO `db_siadpe`.`tareas_empleados` ( `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES ( '$idEmpleado','$cuadrilla', '$tareaID')";
+            $consulta = "INSERT INTO `$BdNombre`.`tareas_empleados` ( `id_empleado`, `id_cuadrilla`, `id_tarea`) VALUES ( '$idEmpleado','$cuadrilla', '$tareaID')";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
 
         }
 
-        /*
-        $consulta = "UPDATE `db_siadpe`.`tareas_empleados` SET `id_empleado` = '2', `id_cuadrilla` = '$cuadrilla' WHERE `tareas_empleados`.`id` = '$tareaID'";		
-        $resultado = $conexion->prepare($consulta);
-        $resultado->execute();        
-        */
+
 
         $consulta ="SELECT MAX(id) as maxid FROM `tareas`";
         $resultado = $conexion->prepare($consulta);
@@ -130,7 +132,7 @@ switch($opci){
     case 3://baja
 
         //borro de la tabla tareas epleados
-        $consulta = "DELETE FROM `db_siadpe`.`tareas_empleados` WHERE `tareas_empleados`.`id_tarea` = $tareaID";
+        $consulta = "DELETE FROM `$BdNombre`.`tareas_empleados` WHERE `tareas_empleados`.`id_tarea` = $tareaID";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();   
          //seteo el numero de finalas en el correspondiente
@@ -139,7 +141,7 @@ switch($opci){
         $resultado->execute();
         
         //borro de la tabla tareas
-        $consulta = "DELETE FROM `db_siadpe`.`tareas` WHERE `tareas`.`id` = $tareaID";
+        $consulta = "DELETE FROM `$BdNombre`.`tareas` WHERE `tareas`.`id` = $tareaID";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();  
 

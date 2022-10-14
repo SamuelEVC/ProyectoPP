@@ -5,7 +5,7 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 //Obtine los empleados en orden alfebetico
-$consulta = "SELECT Usuarios.nombre FROM Empleados INNER JOIN Usuarios ON Empleados.id_usuario = Usuarios.id ORDER BY nombre ASC";
+$consulta = "SELECT usuarios.nombre FROM empleados INNER JOIN usuarios ON empleados.id_usuario = usuarios.id ORDER BY nombre ASC";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $dataEmpleados=$resultado->fetchAll(PDO::FETCH_ASSOC);

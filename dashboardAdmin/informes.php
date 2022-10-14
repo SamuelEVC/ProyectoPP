@@ -7,7 +7,7 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
-$consulta = "SELECT Tareas.id As tarea_ID, Tipologias.descripcion as Tipologia, Estados.estado AS Estado, Tareas.Descripcion , Cuadrillas.nombre Cuadrilla, Tareas.resolucion as Resolucion, Tareas.fecha_inicio as Fecha_Inicio, Tareas.fecha_finalizacion as Fecha_final FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id GROUP BY tarea_ID";
+$consulta = "SELECT tareas.id As tarea_ID, tipologias.descripcion as Tipologia, estados.estado AS Estado, tareas.Descripcion , cuadrillas.nombre as Cuadrilla, tareas.resolucion as Resolucion, tareas.fecha_inicio as Fecha_Inicio, tareas.Fecha_Finalizacion as Fecha_Final FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id GROUP BY Tarea_ID ORDER BY Tarea_ID";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $dataAll=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -150,7 +150,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?php echo $dat['Descripcion'] ?></td>
                                                         <td><?php echo $dat['Resolucion'] ?></td>
                                                         <td><?php echo $dat['Fecha_Inicio'] ?></td>
-                                                        <td><?php echo $dat['Fecha_final'] ?></td>
+                                                        <td><?php echo $dat['Fecha_Final'] ?></td>
                                                         <td><?php echo $dat['Estado'] ?></td>
                                                         <td></td>
                                                     </tr>

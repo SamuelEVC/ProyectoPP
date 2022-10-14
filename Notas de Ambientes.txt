@@ -1,0 +1,15 @@
+AMBIENTES DE TRABAJO:
+
+
+de prueba BD en servidor locar con Wamp:
+
+-En todos los archivos que se llamen "Conexion.php" (hay solo 3, cada uno dentro de carpetas llamadas "bd") estan comentadas las lineas con las conexiones a el servidor local, si se desea trabajar en un entorno u otro solo se debe descomentarlas y ademas, comentar las lineas de produccion.(lo mismo si se desea cambiar al otro ambiente)
+
+-Ademas se debe descomentar o comentar una varieble "$BdNombre" (la cual contiene el nombre de la Base de Datos de Clever Cloud), esta esta a una linea de otra variables comentada con el mismo nombre que es para el servidor local, es decir "db_siadpe", HAY UN TOTAL DE 2 archivos (despues de 10 vueltas parece que son esos nomas) en los que hay que hacer el cambio para que el resto funcione, "crudTareaDiaria.php" , "kanban.php" (si ya se, se deberia llamar Kanvan)
+
+
+
+
+de produccion con BD en Clever Cloud (respuesta general mas lenta, tratar con delicadesa, le lele la pancha)
+
+SI deseamos cambiar a el otro ambiente, con la base de datos de Clever Cloud se hace los mismo que antes pero a la inversa
