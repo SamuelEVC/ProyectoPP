@@ -1,20 +1,42 @@
-$(document).ready(function(){
-
-});
 
 //variables globales
 var tareaID;
+var opcion;
 
+//metodo de modal al aniadir a "Finalizada"
 function ResolucionF(){
-    //$("#formResolucion").trigger("reset");
+    $("#form").trigger("reset");
+    $("#resTarea").attr("placeholder", "Escriba una breve resolucion! (max 300 caracteres)");  
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
     $(".modal-title").text("Resolucion");            
-    $("#modalCRUD").modal("show");        
-    
+    $("#modalCRUD").modal("show");      
+    opcion = 3; //Finalizada 
 };   
 
 
+//boton de edicion 
+$(document).on("click", ".btnEditarResolucion", function(){
+
+    //console.log( fila);
+    tareaID = $(this).attr('id');
+    
+    descripcion = $.trim($('.ResoluClass[id='+tareaID+']').text());
+
+    //console.log(descripcion + tareaID);
+
+    //setea el valor
+    $("#resTarea").val(descripcion);
+
+    opcion = 4; //editar 
+
+    $(".modal-header").css("background-color", "#4e73df");
+    $(".modal-header").css("color", "white");
+    $(".modal-title").text("Editar Resolucion");      
+    $("#resTarea").attr("placeholder", "Edite la resolucion! (max 300 caracteres)");
+    $("#modalCRUD").modal("show");  
+    
+});
 
 $("#form").submit(function(e){
     e.preventDefault(); 
@@ -26,19 +48,22 @@ $("#form").submit(function(e){
         Resolucion = "";
     }
 
-    update(tareaID, 3 ,Resolucion);
+    
 
-    window.location.reload();
+    update(tareaID, opcion ,Resolucion);
+
+    //window.location.reload();
 
     $("#modalCRUD").modal("hide"); 
 });
 
 
 $(document).on("click", ".btnCancelar", function(){    
-    
+    if(opcion == 3){
+        $("#modalCRUD").modal("hide");  
+        window.location.reload();
+    }
     $("#modalCRUD").modal("hide");  
-    window.location.reload();
-
 });
 
 function update(tareaID, opcion, Resolucion){
@@ -57,6 +82,7 @@ function update(tareaID, opcion, Resolucion){
                 //tablaPersonas.row(fila.parents('tr')).remove().draw();
                 //console.log("ENTRO");
                 //location.reload();
+                //window.location.reload();
             },
             error: function (jqXHR, exception) {
                 var msg = '';
@@ -136,6 +162,7 @@ for (let i = 0; i < listCards.length ; i++){
 
                 console.log(" 2 Proceso")
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#ffcd02");
+                //$(draggedItem.querySelectorAll(".card")).css("border", "#ffcd02");//border: 2px solid red
                 $(draggedItem.querySelectorAll(".badge")).text( "Proceso");
 
 
@@ -146,6 +173,7 @@ for (let i = 0; i < listCards.length ; i++){
                 ResolucionF();
                 
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#2dcc70");
+                //$(draggedItem.querySelectorAll(".card")).css("border", "#2dcc70");
                 $(draggedItem.querySelectorAll(".badge")).text( "Finalizado");
                 console.log(" 3 Finalizado ");
 
@@ -154,6 +182,7 @@ for (let i = 0; i < listCards.length ; i++){
             }else if(columna == "Pendiente"){
                 
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#e84c3d");
+                //$(draggedItem.querySelectorAll(".card")).css("border", "#e84c3d");
                 $(draggedItem.querySelectorAll(".badge")).text( "Pendiente");
                 console.log(" 1 Pendientes ");
 

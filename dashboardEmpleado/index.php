@@ -55,16 +55,15 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="content-page" style="margin-left: 0px;">
     <div class="container-fluid">
+        
         <div class="row">
             <div class="col-12">
                 <div class="board">
 
                     <!-- COMIENZA PRIMER COLUMNA -->
-                    <div class="tasks" data-plugin="dragula"
-                        data-containers="[&quot;task-list-one&quot;, &quot;task-list-two&quot;, &quot;task-list-three&quot;, &quot;task-list-four&quot;]">
-                        <h5 id="ColumPro" class="mt-0 task-header text-uppercase">Pendiente</h5>
+                     <div class="tasks"  style="background-color: rgb(243, 179, 173);"> <!--data-plugin="dragula"data-containers="[&quot;task-list-one&quot;, &quot;task-list-two&quot;, &quot;task-list-three&quot;, &quot;task-list-four&quot;]" -->
+                        <h4 id="ColumPro" class="mt-0 task-header text-uppercase" style="background-color: rgb(232, 76, 61); text-align: center; color: white;">Pendiente</h4>
                         <div id="task-list-one" class="task-list-items">
-
 
 
                             <!-- Tarea 1 -->
@@ -72,7 +71,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($dataPen as $dat) {
                             ?>
 
-                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda'>
+                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda'  style="border: 2px solid red" >
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -111,9 +110,8 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <!-- FINALIZA PRIMER COLUMNA -->
 
                     <!-- COMIENZA SEGUNDA COLUMNA -->
-                    <div class="tasks">
-                        <h5 id="ColumPro" class="mt-0 task-header text-uppercase">En proceso</h5>
-
+                    <div class="tasks" style="background-color: rgb(248, 233, 173);">
+                        <h4 id="ColumPro" class="mt-0 task-header text-uppercase" style="background-color: rgb(255, 205, 2); text-align: center; color: white;">En proceso</h4>       
 
                         <div id="task-list-two" class="task-list-items">
 
@@ -123,7 +121,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($dataPros as $dat) {
                             ?>
 
-                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda'>
+                            <div class="card mb-0" draggable="true" title='Arrastre la tarea donde corresponda' style="border: 2px solid rgb(255, 205, 2)">
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted" >Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -159,16 +157,16 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <!-- FINALIZA SEGUNDA COLUMNA -->
 
                     <!-- COMIENZA TERCER COLUMNA -->
-                    <div class="tasks" >
-                        <h5 id="ColumPro" class="mt-0 task-header text-uppercase">Finalizado</h5>
-                        <div id="task-list-three" class="task-list-items">
+                    <div class="tasks" style="background-color: rgb(178, 238, 217);">
+                        <h4 id="ColumPro" class="mt-0 task-header text-uppercase" style="background-color: rgb(28, 200, 138); text-align: center; color: white;">Finalizado</h4>
+                        <div id="task-list-three" class="task-list-items" >
 
                         <!-- Tarea 1 -->
                         <?php
                                 foreach($dataFin as $dat) {
                             ?>
 
-                         <div class="card mb-0"  draggable="true" title='Puede deshacer la finalizacion arrastrando &#10;la tarea a otra columna.'>   <!--  quitar el daggable   draggable="true"-->
+                         <div class="card mb-0"  draggable="true" title='Puede deshacer la finalizacion arrastrando &#10;la tarea a otra columna.' style="border: 2px solid rgb(28, 200, 138)">   <!--  quitar el daggable   draggable="true"-->
                                 <div class="card-body p-3">
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
@@ -188,11 +186,15 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     </p>
                                     
                                     <label  class="col-form-label font-weight-bold">Resolucion:</label>
+                                    <button class='btn btn-primary btnEditarResolucion' title='Editar la resolucion' style="font-size:15px;" id="<?php echo $dat['tarea_ID'] ?>"><i class='material-icons' style="font-size:15px;">edit</i></button>
+                                    
                                     <p class="mb-0">
-                                        <span class="card-text" placeholder="Sin Resolucion">
+                                        <span class="card-text ResoluClass" id="<?php echo $dat['tarea_ID'] ?>">
                                         <?php echo $dat['Resolucion'] ?>
                                         </span>
                                     </p>
+                                            
+                                  
 
                                     <p class="mb-0">   
 
@@ -236,7 +238,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                             <label for="" class="col-form-label">Resolucion de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="resTarea" style="min-height: 150px; height: 150px;" placeholder="No es obligatorio una resolucion!" maxlength="300"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="resTarea" style="min-height: 150px; height: 150px;" maxlength="300"></textarea>
                                         </div>
                                         
                                     </div>
@@ -248,15 +250,15 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                 <button type="button" class="btn btn-light btnCancelar" id="cancelar">Cancelar</button>
                                 <button type="submit" id="btnGuardar" class="btn btn-dark">Enviar</button>
                             </div>                    
-                    </form>    
-            </div>
-        </div>                        
+                    </form>
+                </div>   
+                
+             </div>       
+        </div>
+    </div>                        
+</div>        
 
-    </div> <!-- content -->
-
-
-
-
+ <!-- content -->
 
 
 <!-- finaliza prueba de codigo para kanban -->

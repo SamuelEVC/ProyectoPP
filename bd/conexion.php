@@ -5,7 +5,7 @@
          * AMBIENTE DE PRODUCCION
          * COMIENZO!
         **/
-        /*
+        
         private $hostname = 'bnmgyrcrc1muus4oltqk-mysql.services.clever-cloud.com';
 
         private $database = 'bnmgyrcrc1muus4oltqk';
@@ -32,7 +32,7 @@
                 die("El error de Conexión es :".$e->getMessage());
                 exit;
             }         
-        }   */
+        }   
          /** 
          * AMBIENTE DE PRODUCCION
          * FINAL!
@@ -45,6 +45,7 @@
          * AMBIENTE DE PRUEBA
          * COMIENZO!
         **/
+        /*
     function Conectar(){
         define('servidor','localhost');
         define('nombre_bd','db_siadpe');
@@ -58,7 +59,7 @@
         }catch (Exception $e){
             die("El error de Conexión es :".$e->getMessage());
         }         
-    }
+    }*/
 }
 
     /** 

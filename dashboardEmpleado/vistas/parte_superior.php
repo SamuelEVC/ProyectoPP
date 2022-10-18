@@ -41,6 +41,8 @@ if($_SESSION["s_usuario"] === null){
 
   <!--datables personalizado-->  
   <link rel="stylesheet"  type="text/css" href="styleEmpleados.css">  
+  <!-- iconos de otros lados -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 </head>
 
@@ -123,10 +125,10 @@ if($_SESSION["s_usuario"] === null){
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
 
-            <h4 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h4> 
-            <h4 class="text-center ml-2 mt-3">Cuadrilla: <span class="badge badge-danger" style="font-size:22px;"><?php echo $_SESSION["s_cuadrilla"]; ?></span></h4> 
+            <h2 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h2> 
+            <h2 class="text-center ml-2 mt-3">Cuadrilla: <span class="badge badge-danger" style="font-size:22px;"><?php echo $_SESSION["s_cuadrilla"]; ?></span></h2> 
 
-            <h4 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-success" style="font-size:22px;"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h4> 
+            <h2 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-success" style="font-size:22px;"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h2> 
             
 
             <div class="topbar-divider d-none d-sm-block"></div>

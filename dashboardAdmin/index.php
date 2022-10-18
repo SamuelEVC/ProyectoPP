@@ -36,7 +36,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Main Content -->
 <div id="content">
-        <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
         <div class="container-fluid">
 
         <div class="container">
@@ -139,7 +139,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                             <label for="" class="col-form-label">Descripcion de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;" maxlength="300"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;" placeholder="Agregue una descripcion! Obligatorio (max 300 caracteres!)" maxlength="300"></textarea>
                                         </div>
                                         
                                     </div>

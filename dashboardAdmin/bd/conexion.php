@@ -1,7 +1,7 @@
 <?php
  class Conexion{
         //Produccion
-   /*
+        
         private $hostname = 'bnmgyrcrc1muus4oltqk-mysql.services.clever-cloud.com';
 
         private $database = 'bnmgyrcrc1muus4oltqk';
@@ -28,9 +28,9 @@
                 die("El error de Conexión es :".$e->getMessage());
                 exit;
             }         
-        }   */
+        }   
         //Prueba
-        
+        /*
         function Conectar(){
             define('servidor','localhost');
             define('nombre_bd','db_siadpe');
@@ -44,7 +44,7 @@
             }catch (Exception $e){
                 die("El error de Conexión es :".$e->getMessage());
             }         
-        }
+        }*/
     }
 
      

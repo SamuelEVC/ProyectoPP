@@ -5,9 +5,9 @@ $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
 //prueba local
-$BdNombre = 'db_siadpe';
+//$BdNombre = 'db_siadpe';
 //Produccion
-//$BdNombre = 'bnmgyrcrc1muus4oltqk';
+$BdNombre = 'bnmgyrcrc1muus4oltqk';
 
 
 session_start();
@@ -26,7 +26,7 @@ $date = date('y-m-d');
 switch($opci){
     case 1: //alta
         //Saca al Jefe
-        $consulta ="SELECT Jefes.id  FROM  Jefes INNER JOIN Usuarios ON Jefes.id_usuario = Usuarios.id  WHERE Usuarios.id = '$idUsuario'";
+        $consulta ="SELECT jefes.id  FROM  jefes INNER JOIN usuarios ON jefes.id_usuario = usuarios.id  WHERE usuarios.id = '$idUsuario'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $nombreUsers = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@ switch($opci){
 
 
         //Busco los empleados la cuadrilla que paso por el metodo POST
-        $nombresCuadr ="SELECT Empleados.id AS EmpleadoID FROM Cuadrillas INNER JOIN Empleados ON Cuadrillas.id = Empleados.id_cuadrilla INNER JOIN  Usuarios ON Empleados.id_usuario = Usuarios.id WHERE Cuadrillas.id = $cuadrilla";
+        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla";
         $resultado = $conexion->prepare($nombresCuadr);
         $resultado->execute();
         $nombresCuadrdia = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ switch($opci){
         }
         
         //Actualiza el ultimo resultado  NO SE USA
-        $consulta = "SELECT  Tareas.id AS tarea_ID, Tipologias.id AS tipologia_ID, Tipologias.descripcion AS tipologia, Cuadrillas.id AS cuadrilla_ID, Cuadrillas.nombre AS cuadrilla, Estados.id AS estado_id, Estados.estado, Tareas.descripcion, Tareas.fecha_inicio AS fecha_Ini FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id ORDER BY tarea_ID DESC LIMIT 1";
+        $consulta = "SELECT MAX(id) as maxid FROM `tareas`";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -104,7 +104,7 @@ switch($opci){
         $resultado->execute();
 
         //empleados nuevos
-        $nombresCuadr ="SELECT Empleados.id AS EmpleadoID FROM Cuadrillas INNER JOIN Empleados ON Cuadrillas.id = Empleados.id_cuadrilla INNER JOIN  Usuarios ON Empleados.id_usuario = Usuarios.id WHERE Cuadrillas.id = $cuadrilla";
+        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla";
         $resultado = $conexion->prepare($nombresCuadr);
         $resultado->execute();
         $nombresCuadrdia = $resultado->fetchAll(PDO::FETCH_ASSOC);

@@ -4,8 +4,8 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
-$BdNombre = 'db_siadpe';//prueba local
-//$BdNombre = 'bnmgyrcrc1muus4oltqk';//Produccion
+//$BdNombre = 'db_siadpe';//prueba local
+$BdNombre = 'bnmgyrcrc1muus4oltqk';//Produccion
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['tareaID'])) ? $_POST['tareaID'] : '';
@@ -148,10 +148,17 @@ switch($opcion){
             $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '$Resolucion' WHERE `tareas`.`id` = $id";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
-            $idestado = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            
 
 
         }
+        break;         
+    case 4://Editar
+
+        $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '$Resolucion' WHERE `tareas`.`id` ='$id' ;";		
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();    
+
         break;         
 }
 
