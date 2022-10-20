@@ -121,8 +121,12 @@ $(document).ready(function(){
             $("#confCopy").text("Copiado!"); 
         })
             .catch(err => {
-            alert("Ocurrio un error al intentar copiar los datos:\n" + err);
 
+            Swal.fire(
+                'Error!',
+                "Ocurrio un error al intentar copiar los datos:\n" + err,
+                'warning',
+            );
         })
         
     

@@ -47,6 +47,10 @@ if($_SESSION["s_usuario"] === null){
   <!-- <link rel="stylesheet"  type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>  -->
   <link rel="stylesheet"  type="text/css"  href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css"/>
 
+  <!--SweetAlert2-->
+  <link rel="stylesheet" href="vendor/sweetalert2/sweetalert2.min.css"> 
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.0/dist/sweetalert2.min.css">  -->
+
 </head>
 
 <body id="page-top">
@@ -160,10 +164,17 @@ if($_SESSION["s_usuario"] === null){
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="../bd/logout.php">
+                <a class="dropdown-item btnEditarUsuario" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Cambiar contraseña
+                </a>
+                  <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="../bd/logout.php">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar Sesión
                 </a>
+
+
               </div>
             </li>
 
@@ -171,3 +182,38 @@ if($_SESSION["s_usuario"] === null){
 
         </nav>
         <!-- End of Topbar -->
+        <div class="modal fade" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <form id="formEditarUsuario">    
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label  class="col-form-label">Contraseña actual:</label>
+                      <input type="password" class="form-control" id="OldPassword">
+                    </div>                           
+                    <div class="form-group">
+                      <label  class="col-form-label">Contraseña nueva:</label>
+                      <input type="password" class="form-control" id="NewPassword">
+                    </div>                   
+                    <div class="form-group">
+                      <label  class="col-form-label">Reescribe la contraseña nueva:</label>
+                      <input type="password" class="form-control" id="NewPasswordrepeated">
+                    </div>         
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck">
+                      <label class="form-check-label" for="exampleCheck">Mostrar Contraseña</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+                </div>
+            </form>    
+          </div>
+        </div>
+      </div>

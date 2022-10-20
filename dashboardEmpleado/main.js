@@ -42,19 +42,18 @@ $("#form").submit(function(e){
     e.preventDefault(); 
      
     Resolucion = $.trim($("#resTarea").val());  
-    //console.log(Resolucion +  tareaID );
+    console.log(Resolucion);
 
-    if(Resolucion == null ){
-        Resolucion = "";
+    if(Resolucion == ""){
+        Swal.fire(
+            'Cuidado!',
+            'faltan campos por completar!',
+            'warning',
+        );
+    }else{
+        update(tareaID, opcion ,Resolucion);
+        $("#modalCRUD").modal("hide"); 
     }
-
-    
-
-    update(tareaID, opcion ,Resolucion);
-
-    //window.location.reload();
-
-    $("#modalCRUD").modal("hide"); 
 });
 
 
@@ -213,4 +212,88 @@ for (let i = 0; i < listCards.length ; i++){
 
 }
 
+
+//Editar datos del perfil//
+
+
+$(".btnEditarUsuario").click(function(){
+    $("#formEditarUsuario").trigger("reset");
+    $(".modal-header").css("background-color", "#4e73df");
+    $(".modal-header").css("color", "white");
+    $(".modal-title").text("Editar Usuario");     
+    $("#modalEditarUsuario").modal("show");    
+}); 
+
+$("#exampleCheck").click(function(){
+    let isChecked = $('#exampleCheck')[0].checked
+
+    if(isChecked) {
+        $("#OldPassword").attr('type', 'text');  
+        $("#NewPassword").attr('type', 'text'); 
+        $("#NewPasswordrepeated").attr('type', 'text'); 
+    }else{
+        $("#OldPassword").attr('type', 'password');    
+        $("#NewPassword").attr('type', 'password');   
+        $("#NewPasswordrepeated").attr('type', 'password');   
+    }
+}); 
+
+
+$("#formEditarUsuario").submit(function(e){
+    e.preventDefault(); 
+    
+    //UserName = $.trim($("#UserName").val());   
+    OldPassword = $.trim($("#OldPassword").val());   
+    NewPassword = $.trim($("#NewPassword").val());   
+    NewPasswordrepeated = $.trim($("#NewPasswordrepeated").val());   
+    
+    if ( NewPassword == NewPasswordrepeated) {
+        if( OldPassword == "" || NewPassword == "" || NewPasswordrepeated == ""){
+            
+            Swal.fire(
+                'Cuidado!',
+                'faltan campos por completar!',
+                'warning',
+            );
+        }else{
+            
+            $.ajax({
+                url: "bd/editarUsuario.php",
+                type: "POST",
+                dataType: "json",
+                data: { OldPassword:OldPassword, NewPassword:NewPassword},
+                
+                success: function(data){  
+                    //console.log(data);
+                    //window.location.reload();      
+                    
+                    if(data != null){
+                        Swal.fire(
+                            'Exito!',
+                            'Se guardaron los cambios!',
+                            'success',
+                            );
+                        $("#modalEditarUsuario").modal("hide");      
+                    }else{ 
+                        Swal.fire(
+                            'Error!',
+                            'La contraseña actual es incorrecta!',
+                            'error',
+                        );
+                    }
+                },
+            });           
+        }          
+    }else{
+        console.log("cuidado")
+        Swal.fire(
+            'Cuidado!',
+            'No reescribio la nueva contraseña correctamente!',
+            'warning',
+            ).then(() => {
+                return;
+            });;
+    }
+    
+});  
 

@@ -27,5 +27,15 @@ $('#formLogin').submit(function(e){
                }
            }    
         });
-    }     
+    }  
+    
 });
+
+$("#exampleLogin").click(function(){
+    let isChecked = $('#exampleLogin')[0].checked
+    if(isChecked) {
+        $("#password").attr('type', 'text');  
+    }else{
+        $("#password").attr('type', 'password');      
+    }
+}); 

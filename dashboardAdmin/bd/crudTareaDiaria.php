@@ -5,9 +5,9 @@ $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
 //prueba local
-//$BdNombre = 'db_siadpe';
+$BdNombre = 'db_siadpe';
 //Produccion
-$BdNombre = 'bnmgyrcrc1muus4oltqk';
+//$BdNombre = 'bnmgyrcrc1muus4oltqk';
 
 
 session_start();

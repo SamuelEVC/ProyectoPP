@@ -52,33 +52,34 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
- 
 
-  
+
+
     <!-- datatables JS -->
-    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+    <script type="text/javascript" src="datatables/datatables.min.js"></script>
 
-    <!-- para usar botones en datatables JS -->  
-    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
-    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
-    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>  
+    <!-- para usar botones en datatables JS -->
+    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
     <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
     <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-    
+
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>   -->
     <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>   -->
-    
-    <!-- código JS date --> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>  
-    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>  
 
-    <!-- código propio JS --> 
-    <script type="text/javascript" src="main.js"></script>  
-    <script type="text/javascript" src="mainEmpleados.js"></script>  
-    <script type="text/javascript" src="mainInformes.js"></script>  
-    
+    <!-- código JS date -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 
-    
+    <!-- código propio JS -->
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="mainEmpleados.js"></script>
+    <script type="text/javascript" src="mainInformes.js"></script>
+
+
+    <!-- Swal alert -->
+    <script src="vendor/sweetalert2/sweetalert2.all.min.js"></script>
 
 </body>
 

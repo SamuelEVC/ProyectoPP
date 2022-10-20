@@ -88,9 +88,9 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
                 </div>
             </form>    
-            </div>
+          </div>
         </div>
-    </div>  
+      </div>  
 </div>
 <!--FIN del cont principal-->
 

@@ -35,7 +35,12 @@
                     <input class="input100" type="password" id="password" name="password" placeholder="Password">
                     <span class="focus-efecto"></span>
                 </div>
-                
+
+                <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleLogin">
+                      <label class="form-check-label" for="exampleLogin">Mostrar Contraseña</label>
+                </div>
+
                 <div class="container-login-form-btn">
                     <div class="wrap-login-form-btn">
                         <div class="login-form-bgbtn"></div>

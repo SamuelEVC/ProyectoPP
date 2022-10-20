@@ -66,6 +66,8 @@
     <script src="js/app.min.js"></script>
 
 
+    <!-- Swal alert -->
+    <script src="vendor/sweetalert2/sweetalert2.all.min.js"></script>
 
      <!-- dragula js
      <script src="js/dragula.min.js"></script>
