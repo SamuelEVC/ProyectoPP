@@ -108,8 +108,6 @@ function update(tareaID, opcion, Resolucion){
 
 
 
-
-
 const listCards = document.querySelectorAll('.card');
 const lists = document.querySelectorAll('.tasks');
 
@@ -148,9 +146,6 @@ for (let i = 0; i < listCards.length ; i++){
         list.addEventListener('drop', function(e){
             this.append(draggedItem);
 
-            // console.log($(draggedItem.querySelectorAll("#idtarea")).text())
-
-            //console.log($(this.querySelectorAll("#ColumPro")).text());
             
             tareaID =$(draggedItem.querySelectorAll("#idtarea")).text();
 
@@ -159,13 +154,14 @@ for (let i = 0; i < listCards.length ; i++){
 
             if(columna == "En proceso"){
 
-                console.log(" 2 Proceso")
-                $(draggedItem.querySelectorAll(".badge")).css("background-color", "#ffcd02");
-                //$(draggedItem.querySelectorAll(".card")).css("border", "#ffcd02");//border: 2px solid red
-                $(draggedItem.querySelectorAll(".badge")).text( "Proceso");
+                   
+            $(draggedItem.querySelectorAll(".badge")).css("background-color", "#ffcd02");
+            //$(draggedItem.querySelectorAll(".card")).css("border", "#ffcd02");//border: 2px solid red
+            $(draggedItem.querySelectorAll(".badge")).text( "Proceso");
 
 
-                update(tareaID, 2,"");
+            update(tareaID, 2,"");
+    
                 
             } else if(columna == "Finalizado") {
 
@@ -173,9 +169,8 @@ for (let i = 0; i < listCards.length ; i++){
                 
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#2dcc70");
                 //$(draggedItem.querySelectorAll(".card")).css("border", "#2dcc70");
-                $(draggedItem.querySelectorAll(".badge")).text( "Finalizado");
-                console.log(" 3 Finalizado ");
-
+                $(draggedItem.querySelectorAll(".badge")).text( "Finalizada");
+                
                 
 
             }else if(columna == "Pendiente"){
@@ -183,7 +178,6 @@ for (let i = 0; i < listCards.length ; i++){
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#e84c3d");
                 //$(draggedItem.querySelectorAll(".card")).css("border", "#e84c3d");
                 $(draggedItem.querySelectorAll(".badge")).text( "Pendiente");
-                console.log(" 1 Pendientes ");
 
                 update(tareaID, 1,"");
                 

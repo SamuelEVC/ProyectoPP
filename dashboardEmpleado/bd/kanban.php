@@ -4,8 +4,10 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
-$BdNombre = 'db_siadpe';//prueba local
-//$BdNombre = 'bnmgyrcrc1muus4oltqk';//Produccion
+//prueba local
+$BdNombre = 'db_siadpe';
+//Produccion
+//$BdNombre = 'bnmgyrcrc1muus4oltqk';
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['tareaID'])) ? $_POST['tareaID'] : '';

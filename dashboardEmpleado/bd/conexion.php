@@ -1,6 +1,10 @@
 <?php
  class Conexion{
-        //Produccion
+        
+        /** 
+         * AMBIENTE DE PRODUCCION
+         * COMIENZO!
+        **/
         /*
         private $hostname = 'bnmgyrcrc1muus4oltqk-mysql.services.clever-cloud.com';
 
@@ -29,24 +33,37 @@
                 exit;
             }         
         }   */
-        //Prueba
+         /** 
+         * AMBIENTE DE PRODUCCION
+         * FINAL!
+        **/
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+
+
+        /** 
+         * AMBIENTE DE PRUEBA
+         * COMIENZO!
+        **/
         
-        function Conectar(){
-            define('servidor','localhost');
-            define('nombre_bd','db_siadpe');
-            define('usuario','root');
-            define('password','');         
-            $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
-            
-            try{
-                $conexion = new PDO("mysql:host=".servidor.";dbname=".nombre_bd, usuario, password, $opciones);             
-                return $conexion; 
-            }catch (Exception $e){
-                die("El error de Conexión es :".$e->getMessage());
-            }         
-        }
+    function Conectar(){
+        define('servidor','localhost');
+        define('nombre_bd','db_siadpe');
+        define('usuario','root');
+        define('password','');         
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+        
+        try{
+            $conexion = new PDO("mysql:host=".servidor.";dbname=".nombre_bd, usuario, password, $opciones);             
+            return $conexion; 
+        }catch (Exception $e){
+            die("El error de Conexión es :".$e->getMessage());
+        }        
     }
+}
 
-     
-
+    /** 
+     * AMBIENTE DE PRUEBA
+     * FINAL!
+    **/
 ?>

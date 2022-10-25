@@ -45,7 +45,7 @@ button:hover {
 	cursor: pointer;
 }
 
-/*-- contenedor del Login no cambia por algun motivo--*/
+
 
 .container-login {
   width: 100%;  
@@ -252,5 +252,61 @@ button:hover {
 @media (max-width: 576px) {
   .wrap-login {
     padding: 77px 15px 33px 15px;
+  }
+}
+
+
+/*--- BACKGORUND ANIMATED https://animatedbackgrounds.me/#mm ---*/
+
+
+html {
+  height:100%;
+}
+
+body {
+  margin:0;
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #b047db 50%, #1955fd 50%);  
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+.content {
+  background-color:#eceff1;
+  border-radius:2.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding: 77px 55px 53px 55px;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
   }
 }

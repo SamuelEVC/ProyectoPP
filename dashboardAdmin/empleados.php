@@ -12,11 +12,17 @@ $dataEmpleados=$resultado->fetchAll(PDO::FETCH_ASSOC);
 //sort($dataEmpleados);   
 
 
-$consulta = "SELECT nombre FROM `cuadrillas`";
+$consulta = "SELECT `cuadrillas`.`id`, `cuadrillas`.`nombre`
+FROM `cuadrillas`;";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
+$consulta = "SELECT `areas`.`id`, `areas`.`nombre`
+FROM `areas`;";
+$resultado = $conexion->prepare($consulta);
+$resultado->execute();
+$dataArea=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!--INICIO del cont principal-->
 <div class="container text-center">
@@ -59,8 +65,8 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
     
     <!-- Finaliza lista area -->
   </div>
-      <!--Modal para CRUD-->
-      <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!--Modal para EMPLEADOS-->
+      <div class="modal fade" id="modalEMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -68,29 +74,72 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <form id="formPersonas">    
+            <form id="formEmpleados">    
+                <div class="modal-body">
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombreUser">
+                    </div>
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="usuario">
+                    </div>                
+                    <div class="form-group">
+                    <label for="" class="col-form-label">Contraseña Inicial:</label>
+                    <input type="text" class="form-control" id="contraseña">
+                    </div>
+
+                    <div class="form-group">
+                      <select class="custom-select custom-select-sm" id="cuadrillaDrop">
+                        <option selected>Seleccione una cuadrilla</option>
+                          <?php                            
+                            foreach($dataCuadrillas as $dat) {                                                           
+                            ?>
+                            <option value="<?php echo $dat['id']?>"> <?php echo $dat['nombre']?> </option>                                            
+                            <?php
+                            }
+                            ?>   
+                      </select>
+                    </div>   
+
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                    <button type="submit"  class="btn btn-dark">Guardar</button>
+                </div>
+            </form>    
+            </div>
+        </div>
+    </div>
+    
+    <!-- modal para CUADRILLAS -->
+    <div class="modal fade" id="modalCUAD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <form id="formCuadrilla"> 
+
                 <div class="modal-body">
                     <div class="form-group">
                     <label for="nombre" class="col-form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre">
+                    <input type="text" class="form-control" id="nombreCuadrilla">
                     </div>
-                    <div class="form-group">
-                    <label for="pais" class="col-form-label">País:</label>
-                    <input type="text" class="form-control" id="pais">
-                    </div>                
-                    <div class="form-group">
-                    <label for="edad" class="col-form-label">Edad:</label>
-                    <input type="number" class="form-control" id="edad">
-                    </div>            
+
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
+                    <button type="submit"  class="btn btn-dark">Guardar</button>
                 </div>
             </form>    
-          </div>
+            </div>
         </div>
-      </div>  
+    </div>  
 </div>
 <!--FIN del cont principal-->
 

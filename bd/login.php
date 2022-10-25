@@ -31,7 +31,7 @@ if($resultado->rowCount() >= 1){
     
 
     if($rol  == 'admin'){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, areas.id As idArea
         FROM 
         usuarios JOIN roles ON usuarios.idRol = roles.id 
 
@@ -50,9 +50,10 @@ if($resultado->rowCount() >= 1){
         $_SESSION["s_idRol"] = $data[0]["idRol"];
         $_SESSION["s_rol_descripcion"] = $data[0]["rol"];
         $_SESSION["s_area"] = $data[0]["area"];
+        $_SESSION["s_idArea"] = $data[0]["idArea"];
         
     }elseif($rol  == 'empleado'){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla , areas.id As idArea
         FROM usuarios JOIN roles ON usuarios.idRol = roles.id 
 
         inner join empleados on usuarios.id = empleados.id_usuario
@@ -72,6 +73,7 @@ if($resultado->rowCount() >= 1){
         $_SESSION["s_idRol"] = $data[0]["idRol"];
         $_SESSION["s_rol_descripcion"] = $data[0]["rol"];
         $_SESSION["s_area"] = $data[0]["area"];
+        $_SESSION["s_idArea"] = $data[0]["idArea"];
     }
 
 

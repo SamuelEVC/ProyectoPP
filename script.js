@@ -39,3 +39,4 @@ $("#exampleLogin").click(function(){
         $("#password").attr('type', 'password');      
     }
 }); 
+

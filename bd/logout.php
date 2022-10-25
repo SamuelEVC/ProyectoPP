@@ -6,6 +6,7 @@ unset($_SESSION["s_rol_descripcion"]);
 unset($_SESSION["s_idUsuario"]);
 unset($_SESSION["s_nombre"]);
 unset($_SESSION["s_area"]);
+unset($_SESSION["s_idArea"]);
 unset($_SESSION["s_idCuadrilla"]);
 unset($_SESSION["s_cuadrilla"]);
 session_destroy();
