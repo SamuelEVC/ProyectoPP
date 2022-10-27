@@ -9,8 +9,9 @@ $(document).ready(function(){
         $(this).addClass("active");
       });
 
+      //Abrir modal Agregar Empleados
     $("#btnNuevoEmpleado").click(function(){
-        $("#formTareas").trigger("reset");
+        $("#modalEMP").trigger("reset");
         $(".modal-header").css("background-color", "#1cc88a");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Nuevo Empleado");            
@@ -20,8 +21,8 @@ $(document).ready(function(){
     }); 
 
 
-    //aceptar Modal
-    $("#formEmpleados").submit(function(e){
+    //aceptar Modal Agregar Empleados
+    $("#modalEMP").submit(function(e){
         e.preventDefault(); 
         
         nombre = $.trim($("#nombreUser").val());   
@@ -67,7 +68,7 @@ $(document).ready(function(){
                     console.log(msg);
                 },   
             });
-            // $("#modalCRUD").modal("hide");  
+             $("#modalEMP").modal("hide");  
         }else{
 
             Swal.fire(
@@ -81,7 +82,20 @@ $(document).ready(function(){
         
     });    
 
-    $("#formCuadrilla").submit(function(e){
+
+    //Abrir modal agregar Cuadrilla
+    $("#btnNuevaCuadrilla").click(function(){
+        $("#modalCUAD").trigger("reset");
+        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Nueva Cuadrilla");            
+        $("#modalCUAD").modal("show");        
+        id=null;
+        opci = 1; //alta
+    }); 
+    
+    //aceptar Modal Agregar Cuadrilla
+    $("#modalCUAD").submit(function(e){
         e.preventDefault(); 
         
         nombreCuadrilla = $.trim($("#nombreCuadrilla").val());   
@@ -91,7 +105,6 @@ $(document).ready(function(){
     
         console.log("nombre Cuadrilla: " +nombreCuadrilla);
         
-        //console.log(isNumber(cuadrilla));
     
     
         if(nombreCuadrilla != ""){
@@ -125,7 +138,8 @@ $(document).ready(function(){
                     console.log(msg);
                 },   
             });
-            // $("#modalCRUD").modal("hide");  
+             $("#modalCUAD").modal("hide");  
+             console.log("Se escondio?");
         }else{
             Swal.fire(
                 'Faltan datos!',
@@ -138,19 +152,8 @@ $(document).ready(function(){
           
         
     });    
-
-    $("#btnNuevaCuadrilla").click(function(){
-        $("#formTareas").trigger("reset");
-        $(".modal-header").css("background-color", "#4e73df");
-        $(".modal-header").css("color", "white");
-        $(".modal-title").text("Nueva Cuadrilla");            
-        $("#modalCUAD").modal("show");        
-        id=null;
-        opci = 1; //alta
-    }); 
-
-
-
+    
+    
     function isNumber(num){
         var x;
         var e = parseInt(num);
