@@ -4,25 +4,30 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
+$areaSessionID = $_SESSION["s_idArea"];
+
 //Obtine los empleados en orden alfebetico
-$consulta = "SELECT usuarios.nombre FROM empleados INNER JOIN usuarios ON empleados.id_usuario = usuarios.id ORDER BY nombre ASC";
+$consulta = "SELECT usuarios.id, usuarios.nombre FROM empleados 
+INNER JOIN usuarios ON empleados.id_usuario = usuarios.id 
+INNER JOIN cuadrillas ON empleados.id_cuadrilla = cuadrillas.id
+INNER JOIN areas ON cuadrillas.id_area = areas.id 
+where areas.id = $areaSessionID
+
+ORDER BY nombre ASC ";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $dataEmpleados=$resultado->fetchAll(PDO::FETCH_ASSOC);
 //sort($dataEmpleados);   
 
 
-$consulta = "SELECT `cuadrillas`.`id`, `cuadrillas`.`nombre`
-FROM `cuadrillas`;";
+$consulta = "SELECT `cuadrillas`.`id` as idCuadrilla, `cuadrillas`.`nombre`
+FROM `cuadrillas`
+INNER JOIN areas ON cuadrillas.id_area = areas.id 
+where areas.id = $areaSessionID";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-$consulta = "SELECT `areas`.`id`, `areas`.`nombre`
-FROM `areas`;";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$dataArea=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!--INICIO del cont principal-->
 <div class="container text-center">
@@ -36,7 +41,22 @@ $dataArea=$resultado->fetchAll(PDO::FETCH_ASSOC);
         <?php                            
         foreach($dataEmpleados as $dat) { 
           ?>
-          <li class="list-group-item list-group-item-action"><?php echo $dat['nombre'] ?></li>
+          <li class="list-group-item list-group-item-action ">
+            <?php echo $dat['nombre'] ?>
+            
+
+              
+            <div class='btn-group' id='btnAbsolutes'>
+              
+              <button class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id= "btnEditarEmpleado" title='Editar Empleado'>
+              
+                <i class='material-icons' style="font-size: 1rem;">edit</i>
+          
+              </button>
+            </div>
+          
+          </li>
+
         <?php
         }
         ?>   
@@ -55,7 +75,17 @@ $dataArea=$resultado->fetchAll(PDO::FETCH_ASSOC);
       <?php                            
         foreach($dataCuadrillas as $dat) { 
           ?>
-          <li class="list-group-item list-group-item-action"><?php echo $dat['nombre'] ?></li>
+          <li class="list-group-item list-group-item-action" id="cuadrillaList"><?php echo $dat['nombre'] ?>
+          <div class='btn-group' id='btnAbsolutes'>
+              
+              <button class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id="btnEditarCuadrilla"  title='Editar Cuadrilla'>
+              
+                <i class='material-icons' style="font-size: 1rem;">edit</i>
+          
+              </button>
+            </div>
+        
+        </li>
         <?php
         }
         ?>         

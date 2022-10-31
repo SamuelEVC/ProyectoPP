@@ -120,7 +120,7 @@ $(document).ready(function(){
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        cancelButton: 'btn btn-danger mr-2'
         },
         buttonsStyling: false
     });
@@ -154,7 +154,8 @@ $(document).ready(function(){
                     dataType: "json",
                     data: {opci:opci, tareaID:tareaID},
         
-                    success: function(){
+                    success: function(data){
+                        console.log(data);
                         swalWithBootstrapButtons.fire(
                             'Eliminado!',
                             'La tarea fue eliminada!',

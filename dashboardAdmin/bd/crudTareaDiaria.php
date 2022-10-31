@@ -149,7 +149,14 @@ switch($opci){
         $consulta = "ALTER TABLE `tareas` AUTO_INCREMENT=1";	
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
+        
+        $consulta ="SELECT MAX(id) as maxid FROM `tareas`";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;        
 }
+
+
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS
 $conexion = NULL;

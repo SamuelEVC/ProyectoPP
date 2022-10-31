@@ -10,6 +10,7 @@ $(document).ready(function(){
       });
 
       //Abrir modal Agregar Empleados
+
     $("#btnNuevoEmpleado").click(function(){
         $("#modalEMP").trigger("reset");
         $(".modal-header").css("background-color", "#1cc88a");
@@ -20,6 +21,16 @@ $(document).ready(function(){
         opci = 1; //alta
     }); 
 
+    $(document).on("click", "#btnEditarEmpleado", function(){
+    
+        $("#modalEMP").trigger("reset");
+        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Editar Empleado");            
+        $("#modalEMP").modal("show");        
+        id=null;
+        opci = 0; //alta
+    }); 
 
     //aceptar Modal Agregar Empleados
     $("#modalEMP").submit(function(e){
@@ -86,12 +97,33 @@ $(document).ready(function(){
     //Abrir modal agregar Cuadrilla
     $("#btnNuevaCuadrilla").click(function(){
         $("#modalCUAD").trigger("reset");
-        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("background-color", "#1cc88a");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Nueva Cuadrilla");            
         $("#modalCUAD").modal("show");        
         id=null;
         opci = 1; //alta
+    }); 
+
+
+    //Abrir modal agregar Cuadrilla
+    $(document).on("click", "#btnEditarCuadrilla", function(){
+        $("#modalCUAD").trigger("reset");
+        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Editar Cuadrilla");            
+        $("#modalCUAD").modal("show");        
+        id=null;
+        opci = 0; //NO VA A FUNCIONAR WE 
+
+        var listClose = $(this).closest("li");
+
+        var cuadrilla = document.getElementById('cuadrillaList');
+        
+        
+
+        $("#nombreCuadrilla").val(cuadrilla);
+
     }); 
     
     //aceptar Modal Agregar Cuadrilla
