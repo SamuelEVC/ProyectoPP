@@ -13,6 +13,7 @@ $BdNombre = 'db_siadpe';
 
 // Recepción de los datos enviados mediante POST desde el JS   
 $nombreCuadrilla = (isset($_POST['nombreCuadrilla'])) ? $_POST['nombreCuadrilla'] : '';
+$opci = (isset($_POST['opci'])) ? $_POST['opci'] : '';
 
 
 
@@ -21,12 +22,27 @@ $idArea = $_SESSION["s_idArea"];
 
         
         		
-        
+switch ($opci) {
+    case 1://ALTA
         $consulta = "INSERT INTO `$BdNombre`.`cuadrillas` (`nombre`, `id_area`) VALUES ('$nombreCuadrilla', $idArea)";		
         
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        
+        break;
+    
+    case 2://Actualizacion
+        $idcuad = (isset($_POST['idcuadrilla'])) ? $_POST['idcuadrilla'] : '';
+        
+
+        $consulta = "UPDATE `$BdNombre`.`cuadrillas` SET `nombre`= '$nombreCuadrilla' WHERE `id`='$idcuad'";		
+        
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute(); 
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+}        
 
 
     // $consulta ="SELECT nombre FROM `usuarios` WHERE `nombre` = '$nombre'";

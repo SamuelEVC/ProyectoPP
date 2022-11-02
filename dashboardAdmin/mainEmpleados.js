@@ -1,8 +1,10 @@
 $(document).ready(function(){
     
-
-    //console.log("Hello word");
-
+    //opci para todos
+    opci =0
+    //id vacio para que no rompa el alta
+    id=""
+    
 
     $("li").click(function() {
         $("li").removeClass("active");
@@ -21,17 +23,8 @@ $(document).ready(function(){
         opci = 1; //alta
     }); 
 
-    $(document).on("click", "#btnEditarEmpleado", function(){
     
-        $("#modalEMP").trigger("reset");
-        $(".modal-header").css("background-color", "#4e73df");
-        $(".modal-header").css("color", "white");
-        $(".modal-title").text("Editar Empleado");            
-        $("#modalEMP").modal("show");        
-        id=null;
-        opci = 0; //alta
-    }); 
-
+    
     //aceptar Modal Agregar Empleados
     $("#modalEMP").submit(function(e){
         e.preventDefault(); 
@@ -81,20 +74,31 @@ $(document).ready(function(){
             });
              $("#modalEMP").modal("hide");  
         }else{
-
+            
             Swal.fire(
                 'Faltan datos!',
                 'Seleccione un tipo o una cuadrilla o escriba una descripcion para enviar formulario',
                 'warning',
-            );
-        }
-    
-          
-        
+                );
+            }
+            
+            
+            
     });    
+        // Abrir modal para editar empleados
+    $(document).on("click", "#btnEditarEmpleado", function(){
+        
+            $("#modalEMP").trigger("reset");
+            $(".modal-header").css("background-color", "#4e73df");
+            $(".modal-header").css("color", "white");
+            $(".modal-title").text("Editar Empleado");            
+            $("#modalEMP").modal("show");        
+            id=null;
+            opci = 0; //alta
+    }); 
+        
 
-
-    //Abrir modal agregar Cuadrilla
+        //Abrir modal agregar Cuadrilla
     $("#btnNuevaCuadrilla").click(function(){
         $("#modalCUAD").trigger("reset");
         $(".modal-header").css("background-color", "#1cc88a");
@@ -106,36 +110,18 @@ $(document).ready(function(){
     }); 
 
 
-    //Abrir modal agregar Cuadrilla
-    $(document).on("click", "#btnEditarCuadrilla", function(){
-        $("#modalCUAD").trigger("reset");
-        $(".modal-header").css("background-color", "#4e73df");
-        $(".modal-header").css("color", "white");
-        $(".modal-title").text("Editar Cuadrilla");            
-        $("#modalCUAD").modal("show");        
-        id=null;
-        opci = 0; //NO VA A FUNCIONAR WE 
-
-        var listClose = $(this).closest("li");
-
-        var cuadrilla = document.getElementById('cuadrillaList');
-        
-        
-
-        $("#nombreCuadrilla").val(cuadrilla);
-
-    }); 
     
-    //aceptar Modal Agregar Cuadrilla
+    //aceptar Modal Cuadrilla
     $("#modalCUAD").submit(function(e){
         e.preventDefault(); 
         
-        nombreCuadrilla = $.trim($("#nombreCuadrilla").val());   
-
-           
+        nombreCuadrilla = $.trim($("#nombreCuadrilla").val());
+        idcuadrilla = id;  
+        
+        
         //nombreUsuario = $.trim($("#nombreUsuario").text()); 
     
-        console.log("nombre Cuadrilla: " +nombreCuadrilla);
+        console.log("nombre Cuadrilla: " +nombreCuadrilla + " id: " + idcuadrilla + " opcion: " + opci);
         
     
     
@@ -144,11 +130,11 @@ $(document).ready(function(){
                 url: "bd/BDCuadrillas.php",
                 type: "POST",
                 dataType: "json",
-                data: {"nombreCuadrilla":nombreCuadrilla},
+                data: {"nombreCuadrilla":nombreCuadrilla,"idcuadrilla":idcuadrilla, "opci":opci},
                 
                 success: function(data){  
                     console.log(data);
-                    //window.location.reload();          
+                    window.location.reload();          
                 },
                 error: function (jqXHR, exception) {
                     var msg = '';
@@ -184,6 +170,28 @@ $(document).ready(function(){
           
         
     });    
+    
+    //Abrir modal Editar Cuadrilla
+    $(document).on("click", "#btnEditarCuadrilla", function(){
+        $("#modalCUAD").trigger("reset");
+        $(".modal-header").css("background-color", "#4e73df");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Editar Cuadrilla");            
+        $("#modalCUAD").modal("show");        
+        id=null;
+        opci = 2; //NO VA A FUNCIONAR WE 
+
+
+        var cuadrilla =$.trim($(this).closest("li").clone().children().remove().end().text());
+        id = $(this).val();
+        
+        
+
+        $("#nombreCuadrilla").val(cuadrilla);
+
+        console.log("id: " + id + "  Cuadrilla: " + cuadrilla)
+
+    }); 
     
     
     function isNumber(num){

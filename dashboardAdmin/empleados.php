@@ -66,7 +66,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
     
     <!-- Finaliza lista empleados -->
 
-    <!-- Lista areas -->
+    <!-- Lista Cuadrillas -->
     <div class="card col m-3">
       <div class="card-header">
         Cuadrillas
@@ -75,16 +75,14 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
       <?php                            
         foreach($dataCuadrillas as $dat) { 
           ?>
-          <li class="list-group-item list-group-item-action" id="cuadrillaList"><?php echo $dat['nombre'] ?>
-          <div class='btn-group' id='btnAbsolutes'>
-              
-              <button class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id="btnEditarCuadrilla"  title='Editar Cuadrilla'>
-              
-                <i class='material-icons' style="font-size: 1rem;">edit</i>
           
+          <li  class="list-group-item list-group-item-action row" id="cuadrillaList"> <?php echo $dat['nombre']?>
+          <div class='btn-group' id='btnAbsolutes'>
+                <!-- NOTA:Le asigne el id al boton para poder acceder a el mas facilmente -->
+              <button value="<?php echo $dat['idCuadrilla']?>" class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id="btnEditarCuadrilla"  title='Editar Cuadrilla'>
+                <i id="textButton" class='material-icons' style="font-size: 1rem;">edit</i>          
               </button>
             </div>
-        
         </li>
         <?php
         }
