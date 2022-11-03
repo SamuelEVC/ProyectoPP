@@ -12,7 +12,6 @@ INNER JOIN usuarios ON empleados.id_usuario = usuarios.id
 INNER JOIN cuadrillas ON empleados.id_cuadrilla = cuadrillas.id
 INNER JOIN areas ON cuadrillas.id_area = areas.id 
 where areas.id = $areaSessionID
-
 ORDER BY nombre ASC ";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
@@ -33,7 +32,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
 <div class="container text-center">
   <div class="row row-cols-2">
     <!-- Lista Empleados -->
-    <div class="card col m-3">
+    <div class="card shadow col m-3">
       <div class="card-header">
         Empleados
       </div>
@@ -67,7 +66,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
     <!-- Finaliza lista empleados -->
 
     <!-- Lista Cuadrillas -->
-    <div class="card col m-3">
+    <div class="card shadow col m-3">
       <div class="card-header">
         Cuadrillas
       </div>
@@ -123,7 +122,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                           <?php                            
                             foreach($dataCuadrillas as $dat) {                                                           
                             ?>
-                            <option value="<?php echo $dat['id']?>"> <?php echo $dat['nombre']?> </option>                                            
+                            <option value="<?php echo $dat['idCuadrilla']?>"> <?php echo $dat['nombre']?> </option>                                            
                             <?php
                             }
                             ?>   

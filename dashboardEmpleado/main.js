@@ -6,10 +6,10 @@ var opcion;
 //metodo de modal al aniadir a "Finalizada"
 function ResolucionF(){
     $("#form").trigger("reset");
-    $("#resTarea").attr("placeholder", "Escriba una breve resolucion! (max 300 caracteres)");  
+    $("#resTarea").attr("placeholder", "¡Escriba una breve resolución! Obligatorio (máx. 300 caracteres)");  
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Resolucion");            
+    $(".modal-title").text("Añada una resolución");            
     $("#modalCRUD").modal("show");      
     opcion = 3; //Finalizada 
 };   
@@ -32,8 +32,8 @@ $(document).on("click", ".btnEditarResolucion", function(){
 
     $(".modal-header").css("background-color", "#4e73df");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Editar Resolucion");      
-    $("#resTarea").attr("placeholder", "Edite la resolucion! (max 300 caracteres)");
+    $(".modal-title").text("Editar Resolución");      
+    $("#resTarea").attr("placeholder", "¡Edite la resolución! Obligatorio (máx. 300 caracteres)");
     $("#modalCRUD").modal("show");  
     
 });
@@ -42,12 +42,12 @@ $("#form").submit(function(e){
     e.preventDefault(); 
      
     Resolucion = $.trim($("#resTarea").val());  
-    console.log(Resolucion);
+    //console.log(Resolucion);
 
     if(Resolucion == ""){
         Swal.fire(
-            'Cuidado!',
-            'faltan campos por completar!',
+            '¡Cuidado!',
+            'Faltan campos por completar',
             'warning',
         );
     }else{
@@ -69,19 +69,19 @@ function update(tareaID, opcion, Resolucion){
     
    
         
-    console.log("Reso: "+Resolucion +"| Opcion: "+ opcion +"| Tarea ID: "+ tareaID);
+    //console.log("Reso: "+Resolucion +"| Opcion: "+ opcion +"| Tarea ID: "+ tareaID);
 
             $.ajax({
-            url: "bd/kanban.php",
+            url: "bd/kanvan.php",
             type: "POST",
             dataType: "json",
             data: {opcion:opcion, tareaID:tareaID, Resolucion:Resolucion},
 
-            success: function(){
+            success: function(data){
                 //tablaPersonas.row(fila.parents('tr')).remove().draw();
-                //console.log("ENTRO");
+                //console.log("ENTRO"+data);
                 //location.reload();
-                //window.location.reload();
+                window.location.reload();
             },
             error: function (jqXHR, exception) {
                 var msg = '';
@@ -103,7 +103,7 @@ function update(tareaID, opcion, Resolucion){
                 console.log(msg);
             },
         });
-        window.location.reload();
+        //window.location.reload();
 };
 
 
@@ -146,39 +146,37 @@ for (let i = 0; i < listCards.length ; i++){
         list.addEventListener('drop', function(e){
             this.append(draggedItem);
 
-            
             tareaID =$(draggedItem.querySelectorAll("#idtarea")).text();
 
             // cambios de texto y color y actualiza BBDD
             var columna =$(this.querySelectorAll("#ColumPro")).text();
-
+            
             if(columna == "En proceso"){
-
-                   
-            $(draggedItem.querySelectorAll(".badge")).css("background-color", "#ffcd02");
-            //$(draggedItem.querySelectorAll(".card")).css("border", "#ffcd02");//border: 2px solid red
-            $(draggedItem.querySelectorAll(".badge")).text( "Proceso");
-
-
-            update(tareaID, 2,"");
-    
+                
+                
+                $(draggedItem.querySelectorAll(".badge")).css("background-color", "#ffcd02");
+                //$(draggedItem.querySelectorAll(".card")).css("border", "#ffcd02");//border: 2px solid red
+                $(draggedItem.querySelectorAll(".badge")).text( "Proceso");
+                
+                
+                update(tareaID, 2,"");
+                
                 
             } else if(columna == "Finalizado") {
-
+                
                 ResolucionF();
                 
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#2dcc70");
                 //$(draggedItem.querySelectorAll(".card")).css("border", "#2dcc70");
                 $(draggedItem.querySelectorAll(".badge")).text( "Finalizada");
                 
-                
-
+            
             }else if(columna == "Pendiente"){
                 
                 $(draggedItem.querySelectorAll(".badge")).css("background-color", "#e84c3d");
                 //$(draggedItem.querySelectorAll(".card")).css("border", "#e84c3d");
                 $(draggedItem.querySelectorAll(".badge")).text( "Pendiente");
-
+                
                 update(tareaID, 1,"");
                 
             }else{
@@ -186,21 +184,9 @@ for (let i = 0; i < listCards.length ; i++){
                 console.log("ERROR en detectar la tabla")
                 
             }
-            // console.log( $( "#ColumPro" )
-            // .contents()
-            // .filter(function(){
-            //   return this.nodeType !== 1;
-            // })
-            // .wrap( "<b></b>" ));
-            // console.log( $("#ColumPro").text($("h5").text()));
-
             
-            
-
-
         });
-
-
+        
     }
 
 
@@ -245,8 +231,8 @@ $("#formEditarUsuario").submit(function(e){
         if( OldPassword == "" || NewPassword == "" || NewPasswordrepeated == ""){
             
             Swal.fire(
-                'Cuidado!',
-                'faltan campos por completar!',
+                '¡Cuidado!',
+                'Faltan campos por completar',
                 'warning',
             );
         }else{
@@ -263,15 +249,15 @@ $("#formEditarUsuario").submit(function(e){
                     
                     if(data != null){
                         Swal.fire(
-                            'Exito!',
-                            'Se guardaron los cambios!',
+                            '¡Exito!',
+                            'Se guardaron los cambios',
                             'success',
                             );
                         $("#modalEditarUsuario").modal("hide");      
                     }else{ 
                         Swal.fire(
-                            'Error!',
-                            'La contraseña actual es incorrecta!',
+                            '¡Error!',
+                            'La contraseña actual es incorrecta',
                             'error',
                         );
                     }
@@ -281,8 +267,8 @@ $("#formEditarUsuario").submit(function(e){
     }else{
         console.log("cuidado")
         Swal.fire(
-            'Cuidado!',
-            'No reescribio la nueva contraseña correctamente!',
+            '¡Cuidado!',
+            'No reescribió la nueva contraseña correctamente',
             'warning',
             ).then(() => {
                 return;

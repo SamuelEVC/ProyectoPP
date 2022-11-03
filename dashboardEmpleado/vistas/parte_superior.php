@@ -19,7 +19,7 @@ if($_SESSION["s_usuario"] === null){
   <meta name="author" content="">
 
   <title>SiAdPe</title>
-
+  
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -58,7 +58,7 @@ if($_SESSION["s_usuario"] === null){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php" title="Sistema de Administración de Personal">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -128,7 +128,7 @@ if($_SESSION["s_usuario"] === null){
            
             <!-- Nav Item - AQUI ESTABAN LOS ALERTS -->
 
-            <h2 class="text-center ml-2 mt-3">Area de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h2> 
+            <h2 class="text-center ml-2 mt-3">Área de: <span class="badge badge-info" style="font-size:22px;"><?php echo $_SESSION["s_area"]; ?></span></h2> 
             <h2 class="text-center ml-2 mt-3">Cuadrilla: <span class="badge badge-danger" style="font-size:22px;"><?php echo $_SESSION["s_cuadrilla"]; ?></span></h2> 
 
             <h2 class="text-center ml-2 mt-3">Su permiso es: <span class="badge badge-success" style="font-size:22px;"><?php echo $_SESSION["s_rol_descripcion"]; ?></span></h2> 

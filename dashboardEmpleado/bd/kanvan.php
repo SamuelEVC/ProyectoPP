@@ -16,6 +16,8 @@ $Resolucion = (isset($_POST['Resolucion'])) ? $_POST['Resolucion'] : '';
 
 $date = date('y-m-d'); 
 
+$data=null;
+
 switch($opcion){
     case 1: //Pendiente
 
@@ -160,9 +162,9 @@ switch($opcion){
         $consulta = "UPDATE `$BdNombre`.`tareas` SET `resolucion` = '$Resolucion' WHERE `tareas`.`id` ='$id' ;";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();    
-
+        
         break;         
 }
 
-//print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS
+print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS
 $conexion = NULL;

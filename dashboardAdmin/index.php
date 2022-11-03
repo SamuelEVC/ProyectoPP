@@ -8,10 +8,9 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 //session_start();
-$areaSession = $_SESSION["s_area"];
+$areaSessionID = $_SESSION["s_idArea"];
 
-
-$consultaTareDia = "SELECT tareas.id AS tarea_ID, tipologias.id AS tipologia_ID, tipologias.descripcion AS tipologia, cuadrillas.id AS cuadrilla_ID, cuadrillas.nombre AS cuadrilla, estados.id AS estado_ID, estados.estado, tareas.descripcion, tareas.fecha_inicio AS fecha_Ini FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id INNER JOIN jefes on tareas.id_jefe = jefes.id INNER JOIN areas on jefes.id_area = areas.id WHERE areas.nombre = '$areaSession' GROUP BY Tarea_ID";
+$consultaTareDia = "SELECT tareas.id AS tarea_ID, tipologias.id AS tipologia_ID, tipologias.descripcion AS tipologia, cuadrillas.id AS cuadrilla_ID, cuadrillas.nombre AS cuadrilla, estados.id AS estado_ID, estados.estado, tareas.descripcion, tareas.fecha_inicio AS fecha_Ini FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id INNER JOIN jefes on tareas.id_jefe = jefes.id INNER JOIN areas on jefes.id_area = areas.id WHERE areas.id = '$areaSessionID' GROUP BY Tarea_ID";
 $resultadoTareDia = $conexion->prepare($consultaTareDia);
 $resultadoTareDia->execute();
 $dataTareDia=$resultadoTareDia->fetchAll(PDO::FETCH_ASSOC);
@@ -23,11 +22,14 @@ $resultadoTipo->execute();
 $dataTipo=$resultadoTipo->fetchAll(PDO::FETCH_ASSOC);
  
 
-$consultaCuad = "SELECT id, nombre FROM `cuadrillas` ORDER BY nombre ASC";
+$consultaCuad = "SELECT `cuadrillas`.`id` as id, `cuadrillas`.`nombre`
+FROM `cuadrillas`
+INNER JOIN areas ON cuadrillas.id_area = areas.id 
+where areas.id = $areaSessionID
+ORDER BY nombre ASC";
 $resultadoCuad = $conexion->prepare($consultaCuad);
 $resultadoCuad->execute();
 $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -57,10 +59,10 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                                     <tr>
                                                         <th style="display:none">Tarea_ID</th>
                                                         <th style="display:none">Tipologia_ID</th>
-                                                        <th>Tipologia</th>
+                                                        <th>Tipología</th>
                                                         <th style="display:none">Cuadrilla_ID</th>
                                                         <th>Cuadrilla</th>
-                                                        <th>Descripcion</th>
+                                                        <th>Descripción</th>
                                                         <th>Fecha inicio</th>
                                                         <th style="display:none">Estado_ID</th>
                                                         <th>Estado</th>
@@ -113,7 +115,7 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="col-md-center">
                                     <div class="input-group mb-3">
                                         <select class="custom-select custom-select-sm" id="tipoloDrop">
-                                        <option selected >Seleccione una tipologia</option>
+                                        <option selected >Seleccione una tipología</option>
                                             <?php                            
                                                 foreach($dataTipo as $datT) { 
                                             ?>
@@ -133,10 +135,10 @@ $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="input-group mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <label for="" class="col-form-label">Descripcion de la tarea:</label>
+                                            <label for="" class="col-form-label">Descripción de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; height: 150px;" placeholder="Agregue una descripcion! Obligatorio (max 300 caracteres!)" maxlength="300"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="descTarea" style="min-height: 150px; max-height: 300px; height: 150px;" placeholder="¡Agregue una descripción! Obligatorio (máx. 300 caracteres)" maxlength="300"></textarea>
                                         </div>
                                         
                                     </div>

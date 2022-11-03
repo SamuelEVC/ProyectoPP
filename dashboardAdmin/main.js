@@ -1,10 +1,7 @@
 $(document).ready(function(){
     
-    
     //////////////////////////////////
     //--Script de PAGINA PRINCIPAL--//
-
-
     tablaTareasDiarias = $("#tablaTareasDiarias").DataTable({
         "createdRow":function(row,data,index){
             var num = data[7]
@@ -70,13 +67,7 @@ $(document).ready(function(){
 
         
     var fila; //capturar la fila para editar o borrar el registro
-    
 
-        //esta funcion no anda
-        $("li").click(function() {
-            $("li").removeClass("active");
-            $(this).addClass("active");
-        });
         
 
     $(".btnNuevaTarea").click(function(){
@@ -98,14 +89,12 @@ $(document).ready(function(){
         cuadrilla = fila.find('td:eq(3)').text();
         descripcion = fila.find('td:eq(5)').text();
 
-        //console.log( fila);
 
         //setea el valor
         $("#tipoloDrop").val(tipologia);
         $("#descTarea").val(descripcion);
         $("#cuadrillaDrop").val(cuadrilla);
         
-        //console.log($("#tipoloDrop").val());
 
         opci = 2; //editar
         
@@ -135,15 +124,14 @@ $(document).ready(function(){
         descripcion = filaa.find('td:eq(5)').text();
 
         opci = 3 //borrar
-        //var respuesta = confirm("¿Está seguro de eliminar el registro: "+tareaID + "  "+ descripcion + "?");
 
         swalWithBootstrapButtons.fire({
-            title: '¿Estas Seguro?',
-            text: "Se eliminara la tarea: " + tareaID +  "\n" + "No podras deshacer este cambio!",
+            title: '¿Estás Seguro?',
+            text: "Se eliminará la tarea: " + tareaID +  "\n" + "¡NO PODRÁS DEHACER ESTE CAMBIO!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Borralo!',
-            cancelButtonText: 'Cancelar!',
+            confirmButtonText: 'Borralo',
+            cancelButtonText: 'Cancelar',
             reverseButtons: true
 
         }).then((result) => {
@@ -157,8 +145,8 @@ $(document).ready(function(){
                     success: function(data){
                         console.log(data);
                         swalWithBootstrapButtons.fire(
-                            'Eliminado!',
-                            'La tarea fue eliminada!',
+                            '¡Eliminado!',
+                            'La tarea fue eliminada',
                             'success'
                         ).then(() => {
 
@@ -168,23 +156,17 @@ $(document).ready(function(){
                     }
                 });
 
-
-
-            
             } else if (
             
             result.dismiss === Swal.DismissReason.cancel
             ) {
             swalWithBootstrapButtons.fire(
-                'Cancelado!',
-                'La tarea esta a salvo del olvido!',
+                '¡Cancelado!',
+                'La tarea está a salvo del olvido',
                 'error'
             )
             }
         })
-
-
-
 
         $("#modalCRUD").modal("hide");  
     });
@@ -196,13 +178,6 @@ $(document).ready(function(){
         tipologia = $.trim($("#tipoloDrop").val());   
         descripcion = $.trim($("#descTarea").val());   
         cuadrilla = $.trim($("#cuadrillaDrop").val());   
-        //nombreUsuario = $.trim($("#nombreUsuario").text()); 
-
-        //console.log("tipologia: " +tipologia + " | descripcion: " + descripcion + " | cuadrilla: " + cuadrilla + " | opcion: " + opci + " | tareaID: " + tareaID );
-
-        //console.log(isNumber(tipologia));
-        //console.log(isNumber(cuadrilla));
-
 
         if(isNumber(tipologia) && isNumber(cuadrilla)&& descripcion != ""){
             $.ajax({
@@ -213,24 +188,7 @@ $(document).ready(function(){
                 
                 success: function(data){  
                     console.log(data);
-                    window.location.reload();
-                    /*
-                    Tarea_ID = data[0].tarea_ID; 
-                    Tipologia_ID = data[0].tipologia_ID; 
-                    Tipologia = data[0].tipologia; 
-                    Cuadrilla_ID = data[0].cuadrilla_ID;
-                    Cuadrilla = data[0].cuadrilla;
-                    Descripcion = data[0].descripcion;      
-                    FechaInicio = data[0].fecha_Ini;
-                    Estado_ID = data[0].estado_id;
-                    Estado = data[0].estado;
-                    if(opci == 2){
-                        $(".modal-footer").html("<button type='button' class='btn btn-light' data-dismiss='modal' id='cancelar'>Cancelar</button>  <button type='submit' id='btnGuardar' class='btn btn-dark'>Enviar</button>");  
-                    }*/
-                    
-        
-                    
-                        
+                    window.location.reload();                  
                 },
                 error: function (jqXHR, exception) {
                     var msg = '';
@@ -256,8 +214,8 @@ $(document).ready(function(){
         }else{
         
             Swal.fire(
-                'Faltan datos!',
-                'Seleccione una tipologia y/o una cuadrilla y/o escriba una descripcion para enviar el formulario',
+                '¡Faltan datos!',
+                'Seleccione una tipología y/o una cuadrilla y/o escriba una descripción para enviar el formulario.',
                 'warning',
             );
         }
@@ -307,8 +265,7 @@ $("#exampleCheck").click(function(){
 
 $("#formEditarUsuario").submit(function(e){
     e.preventDefault(); 
-    
-    //UserName = $.trim($("#UserName").val());   
+     
     OldPassword = $.trim($("#OldPassword").val());   
     NewPassword = $.trim($("#NewPassword").val());   
     NewPasswordrepeated = $.trim($("#NewPasswordrepeated").val());   
@@ -317,8 +274,8 @@ $("#formEditarUsuario").submit(function(e){
         if( OldPassword == "" || NewPassword == "" || NewPasswordrepeated == ""){
             
             Swal.fire(
-                'Cuidado!',
-                'faltan campos por completar!',
+                '¡Cuidado!',
+                'Faltan campos por completar',
                 'warning',
             );
         }else{
@@ -335,15 +292,15 @@ $("#formEditarUsuario").submit(function(e){
                     
                     if(data != null){
                         Swal.fire(
-                            'Exito!',
-                            'Se guardaron los cambios!',
+                            '¡Exito!',
+                            'Se guardaron los cambios',
                             'success',
                             );
                         $("#modalEditarUsuario").modal("hide");      
                     }else{ 
                         Swal.fire(
-                            'Error!',
-                            'La contraseña actual es incorrecta!',
+                            '¡Error!',
+                            'La contraseña actual es incorrecta',
                             'error',
                         );
                     }
@@ -351,10 +308,9 @@ $("#formEditarUsuario").submit(function(e){
             });           
         }          
     }else{
-        console.log("cuidado")
         Swal.fire(
-            'Cuidado!',
-            'No reescribio la nueva contraseña correctamente!',
+            '¡Cuidado!',
+            'No reescribió la nueva contraseña correctamente',
             'warning',
             ).then(() => {
                 return;

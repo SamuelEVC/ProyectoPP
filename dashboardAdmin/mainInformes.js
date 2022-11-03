@@ -106,24 +106,23 @@ $(document).ready(function(){
     
         navigator.clipboard.writeText
         (
-        "Tipología: "+ tipologia + "\n"+
-        "Estado: " +estado + "\n"+
-        "Cuadrilla: "+ cuadrilla + "\n"+
-        "Empleado/s: " + empleado + "\n"+
-        "Descripción: "+ descripcion + "\n"+
-        "Resolución: "+ resolucion + "\n"+
-        "Fecha inicio: "+ FechaIni + "\n"+
-        "Fecha Final: "+ FechaFin + "\n"+
-        "Área: " + area + "\n"+
-        "Jefe: " + jefe
+            "Tipología: "+ tipologia + "\n"+
+            "Estado: " +estado + "\n"+
+            "Cuadrilla: "+ cuadrilla + "\n"+
+            "Empleado/s: " + empleado + "\n"+
+            "Descripción: "+ descripcion + "\n"+
+            "Resolución: "+ resolucion + "\n"+
+            "Fecha inicio: "+ FechaIni + "\n"+
+            "Fecha Final: "+ FechaFin + "\n"+
+            "Área: " + area + "\n"+
+            "Jefe: " + jefe
         )
             .then(() => {
-            $("#confCopy").text("Copiado!"); 
+            $("#confCopy").text("¡Copiado!"); 
         })
             .catch(err => {
-
             Swal.fire(
-                'Error!',
+                '¡Error!',
                 "Ocurrio un error al intentar copiar los datos:\n" + err,
                 'warning',
             );
@@ -197,7 +196,7 @@ $(document).ready(function(){
                 
                 
                 
-                if(FechaFin ==null){
+                if(FechaFin == null){
                     $("#FechaFin").text("Sin finalizar");
                     $("#FechaFin").addClass("font-weight-bold");
                     $("#FechaFin").css("color", "red");

@@ -6,47 +6,30 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
-//consulta oendientes
 
 
 $CuadrillaID = $_SESSION["s_idCuadrilla"];
 
 
-// $Consulta = "SELECT        Cuadrillas.id
-// FROM     Cuadrillas INNER JOIN
-//  Empleados ON Cuadrillas.id = Empleados.id_cuadrilla INNER JOIN
-//  Usuarios ON Empleados.id_usuario = Usuarios.id
-// where usuarios.id = '$idUsuario'
-// group by         Cuadrillas.id, Cuadrillas.nombre";
-
-// $resultado= $conexion->prepare($Consulta);
-// $resultado->execute();
-// $Cuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
-// $CuadrillaID = $Cuadrillas[0]['id'];  
-
-
-$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Pendiente' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
-
+//consulta Pendientes
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estados.id = 1 and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPen=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
-$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Proceso' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
-
-
+//consulta Proceso
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estados.id = 2  and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataPros=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
-$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estado = 'Finalizada' and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
-//$Consulta="SELECT Tipologias.descripcion AS Tipos, Cuadrillas.nombre AS Cuadrilla, Tareas.descripcion AS TareaDesc, Tareas.fecha_inicio AS FechaInicio, Estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM Cuadrillas INNER JOIN Tareas_Empleados ON Cuadrillas.id = Tareas_Empleados.id_cuadrilla INNER JOIN Tareas ON Tareas_Empleados.id_tarea = Tareas.id INNER JOIN Tipologias ON Tareas.id_tipologia = Tipologias.id INNER JOIN Estados ON Tareas.id_estado = Estados.id WHERE estado = 'Finalizada' GROUP BY tarea_ID";
+//consulta Finalizada
+$Consulta="SELECT tipologias.descripcion AS Tipos, cuadrillas.nombre AS Cuadrilla, tareas.descripcion AS TareaDesc, tareas.fecha_inicio AS FechaInicio, estados.estado AS Estado, tareas.id as tarea_ID, tareas.fecha_finalizacion, tareas.resolucion as Resolucion FROM cuadrillas INNER JOIN tareas_empleados ON cuadrillas.id = tareas_empleados.id_cuadrilla INNER JOIN tareas ON tareas_empleados.id_tarea = tareas.id INNER JOIN tipologias ON tareas.id_tipologia = tipologias.id INNER JOIN estados ON tareas.id_estado = estados.id WHERE estados.id = 3  and cuadrillas.id = '$CuadrillaID' GROUP BY tarea_ID";
 $resultado= $conexion->prepare($Consulta);
 $resultado->execute();
 $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -85,7 +68,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
 
                                      <br>
-                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
+                                    <label  class="col-form-label font-weight-bold">Descripción:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
@@ -133,7 +116,7 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
                                     
                                     <br>
-                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
+                                    <label  class="col-form-label font-weight-bold">Descripción:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
@@ -171,22 +154,22 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <i class="fa fa-bars"  style="font-size:22px;" aria-hidden="true"></i>
                                     <small class="float-end text-muted">Fecha Inicio: <?php echo $dat['FechaInicio'] ?></small>
                                     <br>
-                                    <small class="float-end text-muted">Fecha Finalizacion: <?php echo $dat['fecha_finalizacion'] ?></small>
+                                    <small class="float-end text-muted">Fecha Finalización: <?php echo $dat['fecha_finalizacion'] ?></small>
                                     <span style="background-color: rgb(28, 200, 138); color: white; font-size:15px;" class="badge"><?php echo $dat['Estado'] ?></span>
 
                                     <label  class="col-form-label font-weight-bold">Tipología:</label>
                                     <label  class="col-form-label" ><?php echo $dat['Tipos'] ?></label>
                                     
                                     <br>
-                                    <label  class="col-form-label font-weight-bold">Descripcion:</label>
+                                    <label  class="col-form-label font-weight-bold">Descripción:</label>
                                     <p class="mb-0">
                                         <span class="card-text">
                                         <?php echo $dat['TareaDesc'] ?>
                                         </span>
                                     </p>
                                     
-                                    <label  class="col-form-label font-weight-bold">Resolucion:</label>
-                                    <button class='btn btn-primary btnEditarResolucion' title='Editar la resolucion' style="font-size:15px;" id="<?php echo $dat['tarea_ID'] ?>"><i class='material-icons' style="font-size:15px;">edit</i></button>
+                                    <label class="col-form-label font-weight-bold">Resolución:</label>
+                                    <button class='btn btn-primary btnEditarResolucion' title='Editar la resolución' style="font-size:15px;" id="<?php echo $dat['tarea_ID'] ?>"><i class='material-icons' style="font-size:15px;">edit</i></button>
                                     
                                     <p class="mb-0">
                                         <span class="card-text ResoluClass" id="<?php echo $dat['tarea_ID'] ?>">
@@ -235,10 +218,10 @@ $dataFin=$resultado->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="input-group mb-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <label for="" class="col-form-label">Resolucion de la tarea:</label>
+                                            <label for="" class="col-form-label">Resolución de la tarea:</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" aria-label="With textarea" id="resTarea" style="min-height: 150px; height: 150px;" maxlength="300"></textarea>
+                                            <textarea class="form-control" aria-label="With textarea" id="resTarea" style="min-height: 150px; max-height: 300px; height: 150px;" maxlength="300"></textarea>
                                         </div>
                                         
                                     </div>

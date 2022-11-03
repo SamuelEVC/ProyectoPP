@@ -41,7 +41,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card-header CritBusc">
                         <div class="row justify-content-end">
                             <div class="col-auto mr-auto">
-                                <h4 class="card-title">Criterios de busqueda</h4>
+                                <h4 class="card-title">Criterios de búsqueda</h4>
                             </div>
                             <div class="col-auto">
                                 
@@ -58,7 +58,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                     <div class="row">
                         <div class="col">
                             <select class="custom-select custom-select-sm" id="DropDownTipologia">
-                                <option selected value="0">Seleccione una tipologia</option>
+                                <option selected value="0">Seleccione una tipología</option>
                                     <?php                            
                                         foreach($dataTipo as $datT) { 
                                     ?>
@@ -118,7 +118,7 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-primary"><center>Infome General</center></h3>
+                    <h3 class="m-0 font-weight-bold text-primary"><center>Informe General</center></h3>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -129,10 +129,10 @@ $dataEstado=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th style="display:none">Tarea_ID</th>
-                                                        <th>Tipologia</th>
+                                                        <th>Tipología</th>
                                                         <th>Cuadrilla</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Resolucion</th>
+                                                        <th>Descripción</th>
+                                                        <th>Resolución</th>
                                                         <th>Fecha inicio</th>
                                                         <th>Fecha Final</th>
                                                         <th>Estado</th>

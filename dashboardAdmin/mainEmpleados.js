@@ -17,7 +17,8 @@ $(document).ready(function(){
         $("#modalEMP").trigger("reset");
         $(".modal-header").css("background-color", "#1cc88a");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Nuevo Empleado");            
+        $(".modal-title").text("Nuevo Empleado");   
+        $("#contraseña").attr("placeholder", "");          
         $("#modalEMP").modal("show");        
         id=null;
         opci = 1; //alta
@@ -36,11 +37,11 @@ $(document).ready(function(){
            
         //nombreUsuario = $.trim($("#nombreUsuario").text()); 
     
-        console.log("nombre: " +nombre + " | usuario: " + usuario + " | cuadrilla: " + cuadrilla + " | opcion: " + opci + " | contraseña: " + contraseña );
+        // console.log("nombre: " +nombre + " | usuario: " + usuario + " | cuadrilla: " + cuadrilla + " | opcion: " + opci + " | contraseña: " + contraseña );
         
-        console.log(isNumber(cuadrilla));
+        // console.log(isNumber(cuadrilla));
     
-    
+        
         if(isNumber(cuadrilla) && nombre != "" && usuario != "" && contraseña != ""){
             $.ajax({
                 url: "bd/BDEmpleados.php",
@@ -74,13 +75,12 @@ $(document).ready(function(){
             });
              $("#modalEMP").modal("hide");  
         }else{
-            
             Swal.fire(
-                'Faltan datos!',
-                'Seleccione un tipo o una cuadrilla o escriba una descripcion para enviar formulario',
+                '¡Faltan datos!',
+                'Seleccione un tipo o una cuadrilla o escriba una descripción para enviar formulario',
                 'warning',
-                );
-            }
+            );
+        }
             
             
             
@@ -91,7 +91,8 @@ $(document).ready(function(){
             $("#modalEMP").trigger("reset");
             $(".modal-header").css("background-color", "#4e73df");
             $(".modal-header").css("color", "white");
-            $(".modal-title").text("Editar Empleado");            
+            $(".modal-title").text("Editar Empleado"); 
+            $("#contraseña").attr("placeholder", "Para conservar contraseña deje este campo vacio");               
             $("#modalEMP").modal("show");        
             id=null;
             opci = 0; //alta
@@ -121,7 +122,7 @@ $(document).ready(function(){
         
         //nombreUsuario = $.trim($("#nombreUsuario").text()); 
     
-        console.log("nombre Cuadrilla: " +nombreCuadrilla + " id: " + idcuadrilla + " opcion: " + opci);
+        //console.log("nombre Cuadrilla: " +nombreCuadrilla + " id: " + idcuadrilla + " opcion: " + opci);
         
     
     
@@ -157,11 +158,10 @@ $(document).ready(function(){
                 },   
             });
              $("#modalCUAD").modal("hide");  
-             console.log("Se escondio?");
         }else{
             Swal.fire(
-                'Faltan datos!',
-                'escriba un nombre de Cuadrilla descriptivo',
+                '¡Faltan datos!',
+                'Escriba un nombre de Cuadrilla descriptivo',
                 'warning',
             );
     
@@ -189,7 +189,7 @@ $(document).ready(function(){
 
         $("#nombreCuadrilla").val(cuadrilla);
 
-        console.log("id: " + id + "  Cuadrilla: " + cuadrilla)
+        //console.log("id: " + id + "  Cuadrilla: " + cuadrilla)
 
     }); 
     
