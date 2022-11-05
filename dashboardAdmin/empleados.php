@@ -47,7 +47,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
               
             <div class='btn-group' id='btnAbsolutes'>
               
-              <button class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id= "btnEditarEmpleado" title='Editar Empleado'>
+              <button value="<?php echo $dat['id']?>" class='btn btn-primary btn-sm' style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .25rem;" id= "btnEditarEmpleado" title='Editar Empleado'>
               
                 <i class='material-icons' style="font-size: 1rem;">edit</i>
           
@@ -92,6 +92,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
     
     <!-- Finaliza lista area -->
   </div>
+
       <!--Modal para EMPLEADOS-->
       <div class="modal fade" id="modalEMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -117,8 +118,8 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <div class="form-group">
-                      <select class="custom-select custom-select-sm" id="cuadrillaDrop">
-                        <option selected>Seleccione una cuadrilla</option>
+                      <select class="custom-select custom-select-sm" id="cuadrillaSELECT">
+                        <option  selected value="0">Seleccione una cuadrilla</option>
                           <?php                            
                             foreach($dataCuadrillas as $dat) {                                                           
                             ?>
@@ -127,7 +128,11 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                             }
                             ?>   
                       </select>
-                    </div>   
+                    </div>
+
+                    <div class="form-group" id="check">
+                    <input type="checkbox"  id="chkhabilitado">  Habilitado</imput>
+                    </div>
 
                 </div>
                 
