@@ -39,6 +39,7 @@ $("#modalEMP").submit(function(e){
         usuario = $.trim($("#usuario").val());   
         contraseña = $.trim($("#contraseña").val());    
         cuadrilla = $.trim($("#cuadrillaSELECT").val());
+        
         if($('#chkhabilitado').is(':checked')){
             chk = 1
         }else{
@@ -46,7 +47,7 @@ $("#modalEMP").submit(function(e){
         }
     
     if(opci == 1){
-        if(isNumber(cuadrilla) && nombre != "" && usuario != "" && contraseña != ""){
+        if(cuadrilla != 0 && nombre != "" && usuario != "" && contraseña != ""){//isNumber(cuadrilla)
             $.ajax({
                 url: "bd/BDEmpleados.php",
                 type: "POST",

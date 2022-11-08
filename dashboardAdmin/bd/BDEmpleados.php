@@ -57,7 +57,7 @@ switch($opci){
 
         if($contraseña==""){
 
-            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre', `usuarios`.`habilitado`= '$chek' WHERE `usuarios`.`id`='$idusuario'";		
+            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
             $resultado = $conexion->prepare($consulta);
             $resultado->execute(); 
 
@@ -65,7 +65,7 @@ switch($opci){
         }else{
             $Pass_md5 = md5($contraseña);
 
-            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre',`usuarios`.`password`='$Pass_md5', `usuarios`.`habilitado`= '$chek' WHERE `usuarios`.`id`='$idusuario'";		
+            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre',`usuarios`.`password`='$Pass_md5', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
             $resultado = $conexion->prepare($consulta);
             $resultado->execute(); 
 
