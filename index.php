@@ -21,41 +21,36 @@
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
     <div class="content">
+             
+        <form class="login-form validate-form" id="formLogin" action="" method="post">
             
-
+            <span class="login-form-title">LOGIN</span>
+            <h4 class="mb-2">SiAdPe</h4>
             
+            <p class="small mb-2 pb-lg-2"><a class="text-black-50">Sistema de Administración de Personal</a></p>
             
+            <div class="wrap-input100" data-validate = "Usuario incorrecto">
+                <input class="input100" type="text" id="usuario" name="usuario" placeholder="Usuario">
+                <span class="focus-efecto"></span>
+            </div>
             
-                
-                <form class="login-form validate-form" id="formLogin" action="" method="post">
-                    
-                    <span class="login-form-title">LOGIN</span>
-                    <h4 class="mb-2">SiAdPe</h4>
-                    
-                    <p class="small mb-2 pb-lg-2"><a class="text-black-50">Sistema de Administración de Personal</a></p>
-                    
-                    <div class="wrap-input100" data-validate = "Usuario incorrecto">
-                        <input class="input100" type="text" id="usuario" name="usuario" placeholder="Usuario">
-                        <span class="focus-efecto"></span>
-                    </div>
-                    
-                    <div class="wrap-input100" data-validate="Password incorrecto">
-                        <input class="input100" type="password" id="password" name="password" placeholder="Password">
-                        <span class="focus-efecto"></span>
-                    </div>
-                    
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleLogin">
-                        <label class="form-check-label" for="exampleLogin">Mostrar Contraseña</label>
-                    </div>
-                    
-                    <div class="container-login-form-btn">
-                        <div class="wrap-login-form-btn">
-                            <div class="login-form-bgbtn"></div>
-                            <button type="submit" name="submit" class="login-form-btn">CONECTAR</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="wrap-input100" data-validate="Password incorrecto">
+                <input class="input100" type="password" id="password" name="password" placeholder="Contraseña">
+                <span class="focus-efecto"></span>
+            </div>
+            
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleLogin">
+                <label class="form-check-label" for="exampleLogin">Mostrar Contraseña</label>
+            </div>
+            
+            <div class="container-login-form-btn">
+                <div class="wrap-login-form-btn">
+                    <div class="login-form-bgbtn"></div>
+                    <button type="submit" name="submit" class="login-form-btn">CONECTAR</button>
+                </div>
+            </div>
+        </form>
           
   
     </div>    

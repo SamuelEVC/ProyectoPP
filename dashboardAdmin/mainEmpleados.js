@@ -43,7 +43,7 @@ $("#modalEMP").submit(function(e){
         if($('#chkhabilitado').is(':checked')){
             chk = 1
         }else{
-            chk = 0            
+            chk = 2            
         }
     
     if(opci == 1){

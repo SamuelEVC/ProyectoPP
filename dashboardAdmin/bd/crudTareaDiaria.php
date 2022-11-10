@@ -52,10 +52,6 @@ switch($opci){
         $resultado->execute();
         $idtareas = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-        /*
-        foreach($idtareas as $dat123) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
-            $idtarea = $dat123['maxid'];
-        }*/
 
         $idtarea = $idtareas[0]['maxid'];
 

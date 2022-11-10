@@ -17,7 +17,6 @@ $consulta = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.des
 FROM 
 usuarios JOIN roles ON usuarios.idRol = roles.id 
 WHERE usuario='$usuario' AND password='$pass' ";
-//$Consulta = "SELECT  roles.descripcion AS rol FROM usuarios JOIN roles ON usuarios.idRol = roles.id WHERE usuarios.usuario='$usuario' AND usuarios.password='$pass'";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -27,10 +26,10 @@ $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
 
 if($resultado->rowCount() >= 1){
-    $rol = $data[0]["rol"];
+    $rol = $data[0]["idRol"];
     
 
-    if($rol  == 'admin'){
+    if($rol  == 1){
         $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, areas.id As idArea
         FROM 
         usuarios JOIN roles ON usuarios.idRol = roles.id 
@@ -43,7 +42,7 @@ if($resultado->rowCount() >= 1){
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         
-        print_r($data);
+        //print_r($data);
         $_SESSION["s_idUsuario"] = $data[0]["idUsuario"];
         $_SESSION["s_usuario"] = $usuario;
         $_SESSION["s_nombre"] = $data[0]["nombreUsuario"];
@@ -52,7 +51,7 @@ if($resultado->rowCount() >= 1){
         $_SESSION["s_area"] = $data[0]["area"];
         $_SESSION["s_idArea"] = $data[0]["idArea"];
         
-    }elseif($rol  == 'empleado'){
+    }elseif($rol  == 2){
         $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla , areas.id As idArea
         FROM usuarios JOIN roles ON usuarios.idRol = roles.id 
 

@@ -67,7 +67,7 @@ $(document).ready(function(){
 
         
     var fila; //capturar la fila para editar o borrar el registro
-
+    var tareaID;
         
 
     $(".btnNuevaTarea").click(function(){
@@ -114,7 +114,7 @@ $(document).ready(function(){
         buttonsStyling: false
     });
 
-    var tareaID;
+    
 
     //BOTON BORRAR
     $(document).on("click", ".btnBorrarTarea", function(){    
@@ -146,7 +146,7 @@ $(document).ready(function(){
                         console.log(data);
                         swalWithBootstrapButtons.fire(
                             '¡Eliminado!',
-                            'La tarea fue eliminada',
+                            'La tarea fue eliminada correctamente.',
                             'success'
                         ).then(() => {
 
@@ -162,13 +162,13 @@ $(document).ready(function(){
             ) {
             swalWithBootstrapButtons.fire(
                 '¡Cancelado!',
-                'La tarea está a salvo del olvido',
+                'La tarea está a salvo del olvido.',
                 'error'
             )
             }
         })
 
-        $("#modalCRUD").modal("hide");  
+        //$("#modalCRUD").modal("hide");  
     });
 
 
@@ -212,16 +212,12 @@ $(document).ready(function(){
             });
             $("#modalCRUD").modal("hide");  
         }else{
-        
             Swal.fire(
                 '¡Faltan datos!',
                 'Seleccione una tipología y/o una cuadrilla y/o escriba una descripción para enviar el formulario.',
                 'warning',
             );
         }
-
-        
-        
     });    
 
     function isNumber(num){

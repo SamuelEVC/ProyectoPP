@@ -6,7 +6,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SiAdPe Insitituto Superior Bernardo Houssay</span>
+            <span>Copyright &copy; SiAdPe Instituto Superior Bernardo Houssay</span>
           </div>
         </div>
       </footer>
