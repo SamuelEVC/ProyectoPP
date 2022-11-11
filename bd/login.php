@@ -30,7 +30,7 @@ if($resultado->rowCount() >= 1){
     
 
     if($rol  == 1){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, areas.id As idArea
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, areas.id As idArea, usuarios.habilitado as Habilitado
         FROM 
         usuarios JOIN roles ON usuarios.idRol = roles.id 
 
@@ -45,6 +45,7 @@ if($resultado->rowCount() >= 1){
         //print_r($data);
         $_SESSION["s_idUsuario"] = $data[0]["idUsuario"];
         $_SESSION["s_usuario"] = $usuario;
+        $_SESSION["s_EmpleadoHabili"] = $data[0]["Habilitado"];
         $_SESSION["s_nombre"] = $data[0]["nombreUsuario"];
         $_SESSION["s_idRol"] = $data[0]["idRol"];
         $_SESSION["s_rol_descripcion"] = $data[0]["rol"];
@@ -52,7 +53,7 @@ if($resultado->rowCount() >= 1){
         $_SESSION["s_idArea"] = $data[0]["idArea"];
         
     }elseif($rol  == 2){
-        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla , areas.id As idArea
+        $consultaGeneral = "SELECT usuarios.id AS idUsuario, usuarios.idRol AS idRol, roles.descripcion AS rol, usuarios.nombre AS nombreUsuario, areas.nombre As area, cuadrillas.id as idCuadrilla,  cuadrillas.nombre as Cuadrilla , areas.id As idArea, usuarios.habilitado as Habilitado
         FROM usuarios JOIN roles ON usuarios.idRol = roles.id 
 
         inner join empleados on usuarios.id = empleados.id_usuario
@@ -65,6 +66,7 @@ if($resultado->rowCount() >= 1){
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         
         $_SESSION["s_idUsuario"] = $data[0]["idUsuario"];
+        $_SESSION["s_EmpleadoHabili"] = $data[0]["Habilitado"];
         $_SESSION["s_idCuadrilla"] = $data[0]["idCuadrilla"];
         $_SESSION["s_cuadrilla"] = $data[0]["Cuadrilla"];
         $_SESSION["s_usuario"] = $usuario;

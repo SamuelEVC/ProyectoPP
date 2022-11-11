@@ -16,20 +16,42 @@ $('#formLogin').submit(function(e){
            datatype: "json",
            data: {usuario:usuario, password:password}, 
            success:function(data){  
-               //console.log(data);             
-               if(data == "null"){
+                //console.log(data); 
+                
+                //console.log("El usuario tiene: "+ obj[0].Habilitado); 
+                          
+                if(data == "null"){
                    Swal.fire({
                        type:'error',
                        title:'Usuario y/o contraseña incorrecta',
                     });
+
                 }else{
-                    window.location.href = "dashboardAdmin/index.php";//AQUI SE HACE LA REDIRECCION  
-               }
-           }    
+                    var obj = JSON.parse(data);
+
+                    UsuHabili = obj[0].Habilitado;
+                    nombreUsu = obj[0].nombreUsuario;
+                    if(UsuHabili == 1){
+                        window.location.href = "dashboardAdmin/index.php";//AQUI SE HACE LA REDIRECCION  
+
+                    }else if(UsuHabili == 2){
+                        //alert("este usuario se encuantra deshabilitado");
+
+                        Swal.fire({
+                            type:'error',
+                            title:'Usuario deshabilitado',
+                            text:
+                                'El usuario ' +nombreUsu+ ', ' +
+                                'se encuentra deshabilitado, ' +
+                                'contacte con el superior.',
+                        });
+                    }
+                }
+            }    
         });
-    }  
-    
+    }    
 });
+
 
 $("#exampleLogin").click(function(){
     let isChecked = $('#exampleLogin')[0].checked

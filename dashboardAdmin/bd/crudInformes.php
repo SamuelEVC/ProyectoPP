@@ -37,15 +37,19 @@ switch($opci){
         $data=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //empleados
-        $consultaCuad = "SELECT usu.nombre from empleados
-        inner join tareas_empleados as taEm
-        on empleados.id_cuadrilla = taEm.id_cuadrilla
-        inner join usuarios as usu
-        on empleados.id_usuario = usu.id
+        //$consultaCuad = "SELECT usu.nombre from empleadosinner join tareas_empleados as taEm on empleados.id_cuadrilla = taEm.id_cuadrilla inner join usuarios as usu on empleados.id_usuario = usu.id where taEm.id_tarea = $tareaID and usu.habilitado = 1 group by usu.nombre";
+
+        $consultaCuad = "SELECT te.id_empleado, usu.nombre 
+        FROM tareas_empleados AS te 
         
-         where taEm.id_tarea = $tareaID
+        INNER JOIN empleados AS e 
+        ON te.id_empleado = e.id
         
-        group by usu.nombre";
+        INNER JOIN usuarios AS usu
+        ON e.id_usuario = usu.id
+        WHERE te.id_tarea = $tareaID ";//and usu.habilitado = 1
+
+
         $resultadoCuad = $conexion->prepare($consultaCuad);
         $resultadoCuad->execute();
         $data=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);

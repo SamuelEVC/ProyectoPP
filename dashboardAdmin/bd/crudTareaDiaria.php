@@ -31,14 +31,7 @@ switch($opci){
         $resultado->execute();
         $nombreUsers = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-        /*
-        foreach($nombreUsers as $dat12) {//si alguien que sabe de PHP ve esto, contratara al mejor sicario para acabar conmigo
-            $UserID = $dat12['id'];
-        }
-        */
         $UserID = $nombreUsers[0]['id'];
-
-
 
 
         //Incert en tabla tareas
@@ -55,10 +48,8 @@ switch($opci){
 
         $idtarea = $idtareas[0]['maxid'];
 
-
-
         //Busco los empleados la cuadrilla que paso por el metodo POST
-        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla";
+        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla and usuarios.habilitado = 1";
         $resultado = $conexion->prepare($nombresCuadr);
         $resultado->execute();
         $nombresCuadrdia = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -100,7 +91,7 @@ switch($opci){
         $resultado->execute();
 
         //empleados nuevos
-        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla";
+        $nombresCuadr ="SELECT empleados.id AS EmpleadoID FROM cuadrillas INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla INNER JOIN  usuarios ON empleados.id_usuario = usuarios.id WHERE cuadrillas.id = $cuadrilla and usuarios.habilitado = 1";
         $resultado = $conexion->prepare($nombresCuadr);
         $resultado->execute();
         $nombresCuadrdia = $resultado->fetchAll(PDO::FETCH_ASSOC);

@@ -108,7 +108,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     <label for="" class="col-form-label">Nombre:</label>
                     <input type="text" class="form-control" id="nombreUser">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group userDiv">
                     <label for="" class="col-form-label">Usuario:</label>
                     <input type="text" class="form-control" id="usuario">
                     </div>                

@@ -18,7 +18,12 @@ $resultadoTipo->execute();
 $dataTipo=$resultadoTipo->fetchAll(PDO::FETCH_ASSOC);
  
 
-$consultaCuad = "SELECT id, nombre FROM `cuadrillas` ORDER BY nombre ASC";
+$consultaCuad = "SELECT `cuadrillas`.`id` as id, `cuadrillas`.`nombre`
+FROM `cuadrillas`
+INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla 
+
+group by `cuadrillas`.`id`, `cuadrillas`.`nombre`
+ORDER BY nombre ASC";
 $resultadoCuad = $conexion->prepare($consultaCuad);
 $resultadoCuad->execute();
 $dataCuad=$resultadoCuad->fetchAll(PDO::FETCH_ASSOC);

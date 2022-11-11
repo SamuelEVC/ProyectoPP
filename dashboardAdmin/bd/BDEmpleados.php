@@ -46,7 +46,7 @@ switch($opci){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-
+        break;
     case 2://MODIFICACION/BAJA
         $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
         $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
@@ -57,7 +57,7 @@ switch($opci){
 
         if($contraseña==""){
 
-            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
+            $consulta = "UPDATE `usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
             $resultado = $conexion->prepare($consulta);
             $resultado->execute(); 
 
@@ -65,18 +65,12 @@ switch($opci){
         }else{
             $Pass_md5 = md5($contraseña);
 
-            $consulta = "UPDATE `$BdNombre`.`usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre',`usuarios`.`password`='$Pass_md5', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
+            $consulta = "UPDATE `usuarios`,`empleados` SET `usuarios`.`usuario`= '$usuario', `usuarios`.`nombre`= '$nombre',`usuarios`.`password`='$Pass_md5', `usuarios`.`habilitado`= '$chek', `empleados`.`id_cuadrilla` = '$cuadrilla' WHERE `usuarios`.`id`='$idusuario' and `empleados`.`id_usuario`='$idusuario'";		
             $resultado = $conexion->prepare($consulta);
             $resultado->execute(); 
-
-
         }
 
-            $consulta = "UPDATE `empleados` SET `empleados`.`id_cuadrilla`= '$cuadrilla' WHERE `empleados`.`id_usuario`= '$idusuario'";		
-            $resultado = $conexion->prepare($consulta);
-            $resultado->execute(); 
-
-
+        break;
     case 3://SOLO CONSULTA
         $id = (isset($_POST['id'])) ? $_POST['id'] : '';
 
@@ -84,7 +78,22 @@ switch($opci){
         $resultado=$conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 4://Consulta si existe el usuario
+        $userName = (isset($_POST['userName'])) ? $_POST['userName'] : '';
 
+        $consulta="SELECT usuario FROM `usuarios` WHERE usuario = '$userName'";
+        $resultado=$conexion->prepare($consulta);
+        $resultado->execute();
+
+        if($resultado->rowCount() >= 1){
+            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $data=null;
+        }
+
+       
+        break;
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS

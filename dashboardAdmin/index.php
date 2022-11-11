@@ -22,10 +22,14 @@ $resultadoTipo->execute();
 $dataTipo=$resultadoTipo->fetchAll(PDO::FETCH_ASSOC);
  
 
+//$consultaCuad = "SELECT `cuadrillas`.`id` as id, `cuadrillas`.`nombre` FROM `cuadrillas` INNER JOIN areas ON cuadrillas.id_area = areas.id  where areas.id = $areaSessionID ORDER BY nombre ASC";
+
 $consultaCuad = "SELECT `cuadrillas`.`id` as id, `cuadrillas`.`nombre`
 FROM `cuadrillas`
+INNER JOIN empleados ON cuadrillas.id = empleados.id_cuadrilla 
 INNER JOIN areas ON cuadrillas.id_area = areas.id 
 where areas.id = $areaSessionID
+group by `cuadrillas`.`id`, `cuadrillas`.`nombre`
 ORDER BY nombre ASC";
 $resultadoCuad = $conexion->prepare($consultaCuad);
 $resultadoCuad->execute();
