@@ -310,7 +310,7 @@ $("#formEditarUsuario").submit(function(e){
             'warning',
             ).then(() => {
                 return;
-            });;
+            });
     }
     
 });    

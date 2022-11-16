@@ -44,7 +44,16 @@ $('#formLogin').submit(function(e){
                                 'El usuario ' +nombreUsu+ ', ' +
                                 'se encuentra deshabilitado, ' +
                                 'contacte con el superior.',
+                        }).then(() => {
+                            $.ajax({
+                                url:"bd/logout.php",
+                                type:"POST",
+                                datatype: "json",
+                                data: {}, 
+                            });
                         });
+
+                        
                     }
                 }
             }    

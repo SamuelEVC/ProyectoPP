@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">        
         
         <link rel="stylesheet" type="text/css" href="fuentes/iconic/css/material-design-iconic-font.min.css">
-        
+        <link rel="icon" type="image/png" href="img/favicon.png"/>
     </head>
     
     <body>

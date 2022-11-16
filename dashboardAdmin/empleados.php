@@ -131,7 +131,7 @@ $dataCuadrillas=$resultado->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <div class="form-group" id="check">
-                    <input type="checkbox"  id="chkhabilitado">  Habilitado</imput>
+                    <input type="checkbox"  id="chkhabilitado">  Deshabilitado</imput>
                     </div>
 
                 </div>

@@ -45,7 +45,7 @@
          * AMBIENTE DE PRUEBA
          * COMIENZO!
         **/
-        
+       
     function Conectar(){
         define('servidor','localhost');
         define('nombre_bd','db_siadpe');

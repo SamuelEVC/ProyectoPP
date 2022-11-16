@@ -46,7 +46,8 @@ if($_SESSION["s_usuario"] === null){
 
   <!--SweetAlert2-->
   <link rel="stylesheet" href="vendor/sweetalert2/sweetalert2.min.css"> 
-
+  
+  <link rel="icon" type="image/png" href="../img/favicon.png"/>
 </head>
 
 <body id="page-top">
@@ -59,10 +60,10 @@ if($_SESSION["s_usuario"] === null){
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php" title="Sistema de Administración de Personal">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon ">
+        <img src="img/logo_SIADPE.png" width="70" height="70">
         </div>
-        <div class="sidebar-brand-text mx-3">SiAdPe</div>
+        
       </a>
 
       <!-- Divider -->

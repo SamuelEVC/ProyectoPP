@@ -41,9 +41,9 @@ $("#modalEMP").submit(function(e){
         cuadrilla = $.trim($("#cuadrillaSELECT").val());
         
         if($('#chkhabilitado').is(':checked')){
-            chk = 1
+            chk = 2
         }else{
-            chk = 2            
+            chk = 1           
         }
     
         if(opci == 1){
@@ -174,10 +174,12 @@ $("#modalEMP").submit(function(e){
                     $("#cuadrillaSELECT").val(cuadrilla);
 
                     if(habilitado == 1){
-                    $("#chkhabilitado").prop('checked', true);
+                        $("#chkhabilitado").prop('checked', false);
+                        console.log(habilitado);
                     }
                     else{
-                        $("#chkhabilitado").prop('checked', false);
+                        $("#chkhabilitado").prop('checked', true);
+                        console.log(habilitado);
                     }
                     
                 },
