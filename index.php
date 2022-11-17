@@ -25,6 +25,11 @@
         <form class="login-form validate-form" id="formLogin" action="" method="post">
             
             <span class="login-form-title">LOGIN</span>
+
+            <div class="sidebar-brand-icon">
+                <img class="shadow invert" src="img/favicon.png" width="110" height="110">
+            </div>
+
             <h4 class="mb-2">SiAdPe</h4>
             
             <p class="small mb-2 pb-lg-2"><a class="text-black-50">Sistema de Administración de Personal</a></p>

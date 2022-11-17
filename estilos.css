@@ -45,7 +45,7 @@ button:hover {
 	cursor: pointer;
 }
 
-
+.invert { filter: invert(100%); }
 
 .container-login {
   width: 100%;  
